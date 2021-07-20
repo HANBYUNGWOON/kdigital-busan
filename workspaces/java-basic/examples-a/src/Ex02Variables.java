@@ -64,6 +64,11 @@ public class Ex02Variables {
 		System.out.println(y);
 		System.out.println(y2);
 		
+		// 1 -> 00000001 
+		//  "1" -> 81
+		// 100 + 100 -> 200
+		// "100" + "100" -> "100100"
+		
 		
 		
 	}
