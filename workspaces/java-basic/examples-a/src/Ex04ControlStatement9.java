@@ -1,5 +1,5 @@
 
-public class Ex04ControlStatement8 {
+public class Ex04ControlStatement9 {
 
 	public static void main(String[] args) {
 		
@@ -33,16 +33,13 @@ public class Ex04ControlStatement8 {
 			
 			// 6. 등급 구하기 + 변수에 저장
 			String grade = "";
-			if (90 <= mean) {
-				grade = "A"; //    평균 90 ~ 100 : A
-			} else if (80 <= mean) {
-				grade = "B";//    평균 80 ~  89 : B
-			} else if (70 <= mean) {
-				grade = "C";//    평균 70 ~  79 : C
-			} else if (60 <= mean) {
-				grade = "D"; //    평균 60 ~  69 : D	
-			} else {
-				grade = "F"; //   평균  0 ~  59 : F
+			switch ((int)mean / 10) {
+			case 10: 
+			case 9:  grade = "A"; break;
+			case 8:  grade = "B"; break;
+			case 7:  grade = "C"; break;
+			case 6:  grade = "D"; break;
+			default:  grade = "F"; break;
 			}
 			
 			//7. 결과 출력
