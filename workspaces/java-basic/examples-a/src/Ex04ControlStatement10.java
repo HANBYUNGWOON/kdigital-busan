@@ -22,6 +22,14 @@ public class Ex04ControlStatement10 {
 			yn = scanner.next();
 		} while (yn.equalsIgnoreCase("y"));
 		
+		//구구단 출력 2 ( 1 ~ 9단 전체 출력 )
+		for (int row = 1; row < 10; row++) { // 행 방향 반복
+			for (int col = 1; col < 10; col++) { // 한 행 출력 (열 방향 반복)
+				System.out.printf("%d * %d = %2d   ", col, row, col * row);
+			}
+			System.out.println();// 줄바꿈 처리
+		}
+		
 
 	}
 
