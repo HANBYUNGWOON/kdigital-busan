@@ -14,7 +14,7 @@ public class Ex09Method5 {
 
 	}
 	
-	// 메서드는 이름과 전달인자의 자료형, 갯수, 순서를 반영해서 구분
+	// 메서드 오버로딩 (Overloading) 메서드는 이름과 전달인자의 자료형, 갯수, 순서를 반영해서 구분
 	static int add(int n1, int n2) {
 		return n1 + n2;
 	}
