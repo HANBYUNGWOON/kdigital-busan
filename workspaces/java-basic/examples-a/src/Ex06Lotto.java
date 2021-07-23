@@ -26,6 +26,15 @@ public class Ex06Lotto {
 					// 1. 기본 규칙을 적용한 숫자를 뽑아서 배열 변수에 저장
 					for (int i = 0; i < numbers.length; i++) {
 						numbers[i] = (int)(Math.random() * 45) + 1; // 1 ~ 45 (45 포함)
+						
+						// 중복검사 비교를 위한 반복 (현재 뽑힌 숫자 위치 이전에 뽑힌 숫자와 비교)
+						for (int j = 0; j < i; j++) {
+							if (numbers[i] == numbers[j]) { // 중복이 있는 경우
+								//i = -1; // 처음부터 다시 뽑기 (위의 i++가 실행되면서 0부터 다시 뽑는 효과)
+								i--; // i -= 1 or i = i - 1 // 현재 위치만 다시뽑기
+								break;
+							}
+						}
 					}
 					
 					// 2. 평균 구하기
@@ -47,6 +56,11 @@ public class Ex06Lotto {
 			case "9": // 종료
 				System.out.println("행운을 빕니다. 부자되세요 !!!");
 				break outer;
+				
+			default: // 위의 case로 제어하지 않은 나머지 모든 경우
+				System.out.println("지원하지 않는 기능입니다.");
+				break;
+				
 			}
 			
 			System.out.println();
