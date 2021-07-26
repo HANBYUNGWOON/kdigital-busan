@@ -1,7 +1,7 @@
 
 public class LottoNumbers {
 	
-	private int[] numbers;
+	private int[] numbers;// = new int[6];
 	
 	public int[] getNumbers() {
 		return numbers;
@@ -10,7 +10,9 @@ public class LottoNumbers {
 		this.numbers = numbers;
 	}
 	
-	public LottoNumbers() {}
+	public LottoNumbers() {
+		numbers = new int[6];
+	}
 	public LottoNumbers(int[] numbers) {
 		this.numbers = numbers;
 	}
