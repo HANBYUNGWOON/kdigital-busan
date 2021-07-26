@@ -5,6 +5,7 @@ public class Ex01HelloJava {
 		
 		System.out.println("Hello, Java with Eclipse");
 		System.out.println("Bye ~~~");
+		System.out.println("Another Line");
 
 	} // main 종료 : 프로그램 종료
 
