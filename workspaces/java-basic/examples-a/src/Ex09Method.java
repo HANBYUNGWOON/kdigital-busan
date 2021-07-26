@@ -5,6 +5,9 @@ public class Ex09Method {
 		
 		// 메서드 호출 : 만들어진 메서드를 실행하게 만드는 코드
 		drawBox();
+		
+		// Ex09Method c = new Ex09Method();
+		// c.drawBox();
 
 	}
 
