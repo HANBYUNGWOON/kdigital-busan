@@ -10,7 +10,7 @@ public class LottoManager {
 			String selection = selectMenu();
 			
 			switch (selection) {
-			case "1":
+			case "1": // 번호 뽑기
 				lotto.selectWinningNumbers();
 				System.out.print("[ 당첨 예상 번호 ] : ");
 				System.out.println(lotto.info());

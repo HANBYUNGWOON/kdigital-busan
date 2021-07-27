@@ -57,9 +57,14 @@ public class LottoNumbers {
 	}
 	
 	public void selectWinningNumbers() {
+//		do {
+//			generateBasicNumbers();
+//		} while (checkMean() == false);
+		
 		do {
 			generateBasicNumbers();
-		} while (checkMean() == false);
+		} while (!checkMean()); // !checkMean() --> checkMean() == false
+								// !true -> false, !false -> true
 	}
 
 }
