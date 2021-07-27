@@ -4,6 +4,7 @@ class Shape {
 		System.out.println("draw shape");
 	}
 }
+
 class Line extends Shape {
 	//@Annotation : 컴파일러에게 주는 코드에 대한 설명 -> 컴파일러는 적절한 추가 코드 적용
 	@Override // 이 메서드가 재정의 메서드라는 것을 표시
