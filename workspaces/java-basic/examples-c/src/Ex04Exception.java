@@ -32,8 +32,7 @@ public class Ex04Exception {
 		}
 		
 		System.out.println("5");
-	}
-	
+	}	
 	public static void method2() throws FileNotFoundException {
 		
 		System.out.println("3");
