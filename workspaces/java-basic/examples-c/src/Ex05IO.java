@@ -100,25 +100,25 @@ public class Ex05IO {
 //		distream3.close(); istream3.close();
 		
 		//4. Object <-> byte[]
-		Item item = new Item();
-		item.setNo(10); // item.no = 10;
-		item.setName("테스트 아이템");
-		
-		FileOutputStream ostream4 = new FileOutputStream("test4.dat");
-		ObjectOutputStream oostream4 = new ObjectOutputStream(ostream4);		
-		oostream4.writeObject(item);//객체를 파일에 binary 형식으로 저장		
-		oostream4.close(); ostream4.close();
-		
-		System.out.println("파일에 데이터를 썼습니다.");
-		
-		FileInputStream istream4 = new FileInputStream("test4.dat");
-		ObjectInputStream oistream4 = new ObjectInputStream(istream4);		
-		Item item2 = (Item)oistream4.readObject();//파일에서 데이터를 읽고 객체로 복원
-
-		System.out.println(item2);
-				
-		oistream4.close();
-		istream4.close();
+//		Item item = new Item();
+//		item.setNo(10); // item.no = 10;
+//		item.setName("테스트 아이템");
+//		
+//		FileOutputStream ostream4 = new FileOutputStream("test4.dat");
+//		ObjectOutputStream oostream4 = new ObjectOutputStream(ostream4);		
+//		oostream4.writeObject(item);//객체를 파일에 binary 형식으로 저장		
+//		oostream4.close(); ostream4.close();
+//		
+//		System.out.println("파일에 데이터를 썼습니다.");
+//		
+//		FileInputStream istream4 = new FileInputStream("test4.dat");
+//		ObjectInputStream oistream4 = new ObjectInputStream(istream4);		
+//		Item item2 = (Item)oistream4.readObject();//파일에서 데이터를 읽고 객체로 복원
+//
+//		System.out.println(item2);
+//				
+//		oistream4.close();
+//		istream4.close();
 		
 		//5.		
 //		ArrayList<Item> items = new ArrayList<Item>();
