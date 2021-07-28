@@ -7,16 +7,11 @@ public class Ex04Exception {
 		
 		System.out.println("1");
 		
-		try {
-			method();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
-		
+		method();
+				
 		System.out.println("6");
 	}	
-	public static void method() throws FileNotFoundException {
+	public static void method()  {
 		
 		System.out.println("2");
 		
@@ -28,11 +23,11 @@ public class Ex04Exception {
 			System.out.println("형변환 오류 정상 처리");
 		} catch (RuntimeException ex) {
 			System.out.println("사용자 정의 오류 정상 처리");
-		} catch (FileNotFoundException ex) {
+		} catch (FileNotFoundException e) {
 			System.out.println("파일 없음 오류 정상 처리");
-		} catch (Exception ex) {
+		} catch (Exception ex) { // 나머지 모든 예외 상황
 			System.out.println("알 수 없는 오류 정상 처리");
-		} finally {
+		} finally { // 예외 여부와 관계 없이 실행이 보장되는 영역
 			System.out.println("예외 여부와 관계 없이 실행");			
 		}
 		
@@ -43,7 +38,7 @@ public class Ex04Exception {
 		
 		System.out.println("3");
 		
-		switch ((int)(Math.random() * 4)) { // 0 ~ 3
+		switch ((int)(Math.random() * 8)) { // 0 ~ 7
 		case 0 :
 			int x = 10 / 0;// ArimethicException 예외가 발생하면 호출한 곳으로 보고
 			break;
@@ -55,7 +50,7 @@ public class Ex04Exception {
 			RuntimeException ex = new RuntimeException("사용자 정의 예외");
 			throw ex;//강제로 예외 발생	
 		case 3 :
-			FileInputStream fis = new FileInputStream("x.exe"); // IOException
+			FileInputStream fis = new FileInputStream("x.exe"); // FileNotFoundException
 			break;
 		}
 		
