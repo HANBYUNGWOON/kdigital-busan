@@ -21,6 +21,20 @@ public class Ex04ControlStatement {
 		} else { // inumber == 5
 			System.out.println("inumber는 5입니다.");
 		}
+		
+		// 3의 배수 출력
+		// 5의 배수 출력
+		// 나머지 출력
+		if (inumber % 3 == 0 && inumber % 5 == 0) {
+			System.out.println("inumber는 3과 5의 공배수 입니다.");
+		} else if (inumber % 3 == 0) {	// 10 % 7 -> 3 (나머지 계산)
+			System.out.println("inumber 3의 배수입니다.");
+		} else if (inumber % 5 == 0) {
+			System.out.println("inumber는 5의 배수입니다.");
+		} else {
+			System.out.println("inumber는 3의 배수도 5의 배수도 아닙니다.");
+		}
+		
 		System.out.println("끝");
 		
 	}
