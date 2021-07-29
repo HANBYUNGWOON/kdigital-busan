@@ -5,9 +5,9 @@ public class Ex04ControlStatement5 {
 		
 		// 1에서 20까지 1씩 증가하면서 출력
 		// 홀수만 출력
-		// 15가 되면 반복문 종료
+		// 15가 되면 반복문 종료 -> break
 		
-		for (int i = 1; i <= 20; i++) {
+		for (int i = 1; i <= 20; i++) { // i -> 1, 2, 3, ... 20
 			if (i % 2 == 0) { // 짝수 조건
 				continue; // 반복문의 시작위치로 즉시 이동 (이후에 나오는 반복 영역의 실행문을 실행하지 마세요)
 			}
@@ -24,8 +24,8 @@ public class Ex04ControlStatement5 {
 		outer1 : for (int i = 0; i < 10; i++) {
 			switch (i) { 
 			case 5:
-				//break; // switch 종료
-				break outer1; // outer 이름이 붙은 반복문 또는 switch 문 종료
+				// break; // switch 종료
+				break outer1; // outer1 이름이 붙은 반복문 또는 switch 문 종료
 			}
 			
 			System.out.println("i1 : " + i);
@@ -37,7 +37,7 @@ public class Ex04ControlStatement5 {
 			
 			for (int j = 0; j < 10; j++) {
 				if ( j == 3 ) {
-					// break; // j 반복문 종료
+					//break; // j 반복문 종료
 					break outer2; // outer 이름이 붙은 반복문 또는 switch 문 종료
 				}
 				System.out.println("j : " + j);

@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class Ex04ControlStatement4 {
 
@@ -48,6 +49,25 @@ public class Ex04ControlStatement4 {
 			System.out.println("ROUND3 : " + round3);
 			round3++;
 		}
+		
+		///////////////////
+		
+		// 사용자 정수 입력 -> 1 ~ 입력된 숫자까지 정수 합 구하기
+		System.out.print("1부터 합을 구할 숫자를 입력하세요 : ");
+		int number = scanner.nextInt();
+		int sum = 0;
+		for (int i = 1; i <= number; i++) { // i++ -> i = i + 1
+			sum = sum + i;
+		}
+		System.out.printf("1 ~ %d까지의 합 : %d\n", number, sum);
+		
+		///////////////////
+		
+		// **********
+		// *********
+		// ********
+		// ..
+		// *
 
 	}
 
