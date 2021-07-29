@@ -34,9 +34,15 @@ class NoAndCount implements Comparable<NoAndCount> {
 		return String.format("[%2d : %4d]", no, count);
 	}
 	
+	static boolean ascending = true;
+	
 	@Override
 	public int compareTo(NoAndCount o) {
-		return this.count - o.count; // +는 this가 크다, 0는 this와 o가 같다, -는 this가 작다
+		if (ascending) {
+			return this.count - o.count; // +는 this가 크다, 0는 this와 o가 같다, -는 this가 작다
+		} else {
+			return -(this.count - o.count);
+		}
 	}
 }
 
