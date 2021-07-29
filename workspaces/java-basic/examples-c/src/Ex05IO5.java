@@ -1,11 +1,12 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
-class NoAndCount {
+class NoAndCount implements Comparable<NoAndCount> {
 	private int no;
 	private int count;
 	
@@ -32,6 +33,11 @@ class NoAndCount {
 	public String toString() {
 		return String.format("[%2d : %4d]", no, count);
 	}
+	
+	@Override
+	public int compareTo(NoAndCount o) {
+		return this.count - o.count; // +는 this가 크다, 0는 this와 o가 같다, -는 this가 작다
+	}
 }
 
 public class Ex05IO5 {
@@ -45,6 +51,8 @@ public class Ex05IO5 {
 			csvr = new CSVReader(fr);
 			NoAndCount[] list = new NoAndCount[45]; // 각 번호별 당첨 빈도를 저장하는 배열
 			for (int i = 0; i < list.length; i++) {
+				// list[i].setNo(i + 1);
+				// list[i].setCount(0);
 				list[i] = new NoAndCount(i + 1, 0);
 			}
 			while (true) {
@@ -72,15 +80,10 @@ public class Ex05IO5 {
 			}
 			System.out.println();
 			
-//			// 가장 많이 당첨된 번호 찾기
-//			int no = 0, count = 0;
-//			for (int i = 0; i < countByNo.length; i++) {
-//				if (countByNo[i] > count) {
-//					count = countByNo[i];
-//					no = i + 1;
-//				}
-//			}
-//			System.out.printf("가장 많이 당첨된 번호와 횟수 [%2d : %3d]\n", no, count);
+			Arrays.sort(list);
+			
+			System.out.printf("가장 많이 당첨된 번호와 횟수 %s\n", list[list.length - 1]);
+			System.out.printf("두번째로 많이 당첨된 번호와 횟수 %s\n", list[list.length - 2]);
 			
 		} catch (FileNotFoundException ex) {
 			ex.printStackTrace();	// 오류 메시지 표시
