@@ -1,52 +1,119 @@
 import java.io.FileReader;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 import com.opencsv.CSVReader;
+
+class ConfirmedCase {
+	
+	private int caseNo;
+	private String confirmedDate;
+	private String region;
+	private String status;
+	private boolean contacted;
+
+	public int getCaseNo() {
+		return caseNo;
+	}
+	public void setCaseNo(int caseNo) {
+		this.caseNo = caseNo;
+	}
+	public String getConfirmedDate() {
+		return confirmedDate;
+	}
+	public void setConfirmedDate(String confirmedDate) {
+		this.confirmedDate = confirmedDate;
+	}
+	public String getRegion() {
+		return region;
+	}
+	public void setRegion(String region) {
+		this.region = region;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public boolean isContacted() {
+		return contacted;
+	}
+	public void setContacted(boolean contacted) {
+		this.contacted = contacted;
+	}
+	
+	public ConfirmedCase() {}
+	public ConfirmedCase(int caseNo, String confirmedDate, String region, String status, boolean contacted) {
+		this.caseNo = caseNo;
+		this.confirmedDate = confirmedDate;
+		this.region = region;
+		this.status = status;
+		this.contacted = contacted;
+	}
+	@Override
+	public String toString() {
+		return String.format("[%6d][%s][%5s][%b][%s]", caseNo,
+													   confirmedDate,
+													   region,
+													   contacted,
+													   status);
+	}
+	
+}
 
 public class Ex05IO9 {
 
 	public static void main(String[] args) {
 		
-		//1. seoul-covid19.csv 파일을 읽어서 각 행별로 데이터 출력
+		// seoul-covid19.csv 파일을 읽어서 각 행별로 객체를 만들어서 목록에 저장
 		FileReader fr = null;
 		CSVReader csvr = null;
+		
+		ArrayList<ConfirmedCase> cases = new ArrayList<>(); // 파일에서 읽은 각 행의 데이터를 객체로 만들어서 목록으로 관리하기 위한 컬렉션 객체
 		
 		try {
 			fr = new FileReader("seoul-covid19.csv");
 			csvr = new CSVReader(fr);
-			String guNames = "";
 			while (true) {
 				String[] row = csvr.readNext();
 				if (row == null) {
 					break;
 				}
 				//System.out.printf("[%s][%s][%s][%s][%s]\n", row[0], row[1], row[5], row[7], row[13]);
+				// 한 행의 데이터를 읽어서 ConfirmedCase 인스턴스를 생성
+				ConfirmedCase cc = new ConfirmedCase(Integer.parseInt(row[0]),
+													 row[1],
+													 row[5],
+													 row[7],
+													 row[13].toLowerCase().equals("y")); // String.toLowerCase() -> 소문자로 변경
 				
-				String gu = row[5].trim();	// trim() : 문자열 양 끝에서 공백 제거
-				if (!gu.equals("0") && !guNames.contains(gu)) { // guNames 문자열에 gu가 포함되어 있는지 확인 (포함되지 않았을 때 true)
-					if (guNames.length() == 0) {
-						guNames += gu;
-					} else {
-						guNames += ";" + gu;
-					}
-				}				
-			}
-			// System.out.println(guNames);
-			String[] names = guNames.split(";");
-			for (String name : names) {
-				System.out.println(name);
-			}
+				cases.add(cc); // 한 행의 데이터로 만든 ConfirmedCase 인스턴스를 목록에 추가
+			}			
 			
-			// 1. 특정 자치구를 선택해서 총 확진자 수를 계산 ( 예를 들어 "마포구" )
-			// 2. 전체 자치구별 총 확진자 수를 계산
-			
-			
-		} catch (Exception ex) {
-			
-		} finally {
-			
+		} catch (Exception ex) {			
+		} finally {			
+		}
+		
+		// 파일에서 읽어서 객체에 저장한 데이터 사용
+		for (ConfirmedCase c : cases) {
+			System.out.println(c);
 		}
 		
 
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
