@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.Vector;
 
-public class Ex06Collections {
+public class Ex07Collections {
 
 	public static void main(String[] args) throws Exception {
 
@@ -25,13 +25,13 @@ public class Ex06Collections {
 //		al.add("두 번째 데이터.");
 //		al.add("세 번째 데이터.");
 //		al.add("네 번째 데이터.");
-//		al.add("네 번째 데이터.");
+//		al.add("네 번째 데이터.");// 중복 허용
 //		al.add(1, "삽입된 데이터.");//1번째 위치에 삽입		
 //		for (int i = 0; i < al.size(); i++) {//컬렉션.size() : 요소의 갯수
 //			System.out.println(al.get(i));//List컬렉션.get(위치) : 지정된 위치의 데이터 반환
 //		}
 //		al.remove(2);//위치가 2번째 데이터 삭제
-//		String strToRemove = (String)al.get(0);
+//		String strToRemove = (String)al.get(0); // Generic인 경우 형변환 필요 없음
 //		al.remove(strToRemove);//strToRemove와 같은 객체를 제거 (여기서는 0번째 데이터)		
 //		System.out.println();
 //		for (int i = 0; i < al.size(); i++) {//컬렉션.size() : 요소의 갯수
@@ -40,7 +40,7 @@ public class Ex06Collections {
 		
 		/////////////////////////////////////////////////////////////////////////////
 		
-		//2. Vector
+		//2. Vector : ArrayList와 동일한데 ThreadSafe한 특성을 갖습니다.
 //		Vector<String> al = new Vector<>();//
 //		al.add("첫 번째 데이터.");//목록의 마지막에 추가
 //		al.add("두 번째 데이터.");
@@ -86,7 +86,7 @@ public class Ex06Collections {
 		
 		/////////////////////////////////////////////////////////////////
 		
-//		//4. HashSet
+		//4. HashSet
 //		HashSet<String> al = new HashSet<>();//
 //		al.add("첫 번째 데이터.");
 //		al.add("두 번째 데이터.");
