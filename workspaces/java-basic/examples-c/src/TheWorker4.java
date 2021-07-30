@@ -6,11 +6,12 @@ public class TheWorker4 extends Thread {
 		doWork();
 	}
 
-	private static int result;
+	private static int result; // static은 모든 인스턴스가 공유하는 멤버
 	
 	public void doWork() {
 		System.out.println("2. Beginning of doWork");
 		try {
+			// 1에서 100까지의 합을 계산하는 코드
 			result = 0;
 			for (int i = 1; i <= 100; i++) {
 				if (i % 10 == 0) { //10의 배수인 경우

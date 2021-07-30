@@ -7,7 +7,7 @@ public class TheWorker5 extends Thread {
 	}
 
 	private static int result;
-	private static Object obj = new Object();
+	private static Object obj = new Object(); // 동기화 객체 (열쇠)
 	
 	public void doWork() {
 		System.out.println("2. Beginning of doWork");
