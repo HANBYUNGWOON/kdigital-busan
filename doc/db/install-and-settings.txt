@@ -1,0 +1,32 @@
+1. install Oracle XE 18c
+
+   부록 파일 참고
+
+2. install SQL Developer
+
+   부록 파일 참고
+
+3. create user madang
+
+-- DROP USER c##madang CASCADE;
+CREATE USER c##madang IDENTIFIED BY "madang";
+GRANT CONNECT, RESOURCE TO c##madang;
+GRANT CREATE VIEW, CREATE SYNONYM TO c##madang;
+GRANT UNLIMITED TABLESPACE TO c##madang;
+
+4. create user hr
+
+-- DROP USER c##hr CASCADE;
+
+CREATE USER c##hr IDENTIFIED BY "hr";
+GRANT CONNECT, RESOURCE TO c##hr;
+GRANT CREATE VIEW, CREATE SYNONYM TO c##hr;
+GRANT UNLIMITED TABLESPACE TO c##hr;
+
+5. execute madang-sql
+
+@C:\path-for\demo_madang_init.sql
+
+6. execute hr-sql
+
+@C:\path-for\oracle-hr-schema_CDB.sql

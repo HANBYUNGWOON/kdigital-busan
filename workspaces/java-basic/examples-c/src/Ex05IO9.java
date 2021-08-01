@@ -93,7 +93,7 @@ public class Ex05IO9 {
 			}			
 			
 		} catch (Exception ex) {			
-		} finally {			
+		} finally {
 		}
 		
 		// 파일에서 읽어서 객체에 저장한 데이터 사용
