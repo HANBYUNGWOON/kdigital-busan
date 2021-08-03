@@ -55,3 +55,91 @@ INNER JOIN CUSTOMER C
 ON O.CUSTID = C.CUSTID
 GROUP BY C.NAME
 ORDER BY C.NAME;
+
+-- Customer 테이블의 고객의 이름과 고객이 주문한 Book 테이블의 도서의 이름을 구하시오
+
+SELECT * FROM CUSTOMER C; -- CUSTOMER 테이블은 BOOK 테이블과 직접적인 관계가 없습니다.
+SELECT * FROM BOOK B; -- BOOK 테이블은 CUSTOMER 테이블과 직접적인 관계가 없습니다.
+
+SELECT 
+    C.NAME "고객명" 
+    , B.BOOKNAME "도서명"
+    , O.SALEPRICE "주문금액"
+    , O.ORDERDATE "주문일자"
+FROM CUSTOMER C, ORDERS O, BOOK B
+WHERE C.CUSTID = O.CUSTID AND O.BOOKID = B.BOOKID;
+
+SELECT 
+    C.NAME "고객명" 
+    , B.BOOKNAME "도서명"
+    , O.SALEPRICE "주문금액"
+    , O.ORDERDATE "주문일자"
+FROM CUSTOMER C
+INNER JOIN ORDERS O
+ON C.CUSTID = O.CUSTID
+INNER JOIN BOOK B
+ON O.BOOKID = B.BOOKID;
+
+-- 가격이 20,000원인 도서를 주문한 고객의 이름과 도서의 이름, 판매가격, 주문일자을 구하시오.
+-- (JOIN 조건과 일반조건 결합)
+SELECT 
+    C.NAME "고객명" 
+    , B.BOOKNAME "도서명"
+    , O.SALEPRICE "주문금액"
+    , O.ORDERDATE "주문일자"
+FROM CUSTOMER C, ORDERS O, BOOK B
+WHERE C.CUSTID = O.CUSTID AND O.BOOKID = B.BOOKID AND O.SALEPRICE = 20000;
+
+SELECT 
+    C.NAME "고객명" 
+    , B.BOOKNAME "도서명"
+    , O.SALEPRICE "주문금액"
+    , O.ORDERDATE "주문일자"
+FROM CUSTOMER C
+INNER JOIN ORDERS O
+ON C.CUSTID = O.CUSTID
+INNER JOIN BOOK B
+ON O.BOOKID = B.BOOKID
+WHERE O.SALEPRICE = 20000;
+
+-- 도서를 구매하지 않은 고객을 포함하여 고객의 이름과 고객이 주문한 도서의 판매가격을 구하시오
+SELECT C.NAME "고객명", O.SALEPRICE "판매가격"
+FROM CUSTOMER C
+INNER JOIN ORDERS O
+ON C.CUSTID = O.CUSTID;
+
+SELECT C.NAME "고객명", NVL(O.SALEPRICE, 0) "판매가격"
+FROM CUSTOMER C
+LEFT OUTER JOIN ORDERS O
+ON C.CUSTID = O.CUSTID
+ORDER BY C.NAME;
+
+SELECT C.NAME "고객명", NVL(O.SALEPRICE, 0) "판매가격"
+FROM CUSTOMER C, ORDERS O
+WHERE C.CUSTID = O.CUSTID(+) -- ORACLE OUTER JOIN
+ORDER BY C.NAME;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
