@@ -1,0 +1,75 @@
+-- 도서번호가 1인 도서의 이름 (도서 정보)
+
+DESC BOOK;
+-- SELECT BOOKID, BOOKNAME, PUBLISHER, PRICE
+SELECT *
+FROM BOOK
+WHERE BOOKID = 1;
+
+-- 가격이 20,000원 이상인 도서의 이름 (도서 정보)
+
+SELECT BOOKID, BOOKNAME, PUBLISHER, PRICE
+FROM BOOK
+WHERE PRICE >= 20000;
+
+-- 박지성 고객의 총 구매액, 도서 개수
+SELECT * FROM BOOK;
+SELECT * FROM CUSTOMER; -- 이 조회를 통해 박지성 고객의 CUSTID가 1인 것을 확인
+
+SELECT 
+    '박지성' AS "고객명" -- 리터럴을 조회 결과에 포함할 수 있습니다.
+    , SUM(SALEPRICE) AS "총구매액"
+    , COUNT(*) AS "수량"
+FROM ORDERS
+WHERE CUSTID = 1; -- 박지성 고객을 의미
+-- GROUP BY CUSTID;
+
+-- 마당서점 도서의 총 개수
+SELECT COUNT(*) "도서수량"
+FROM BOOK;
+
+-- 마당서점에 도서를 출고하는 출판사의 총 개수
+SELECT COUNT(PUBLISHER) PUBLISHER_COUNT -- 중복을 포함한 집계
+FROM BOOK;
+
+SELECT PUBLISHER
+FROM BOOK;
+
+SELECT DISTINCT PUBLISHER
+FROM BOOK;
+
+SELECT COUNT (DISTINCT PUBLISHER) PUBLISHER_COUNT -- 중복을 제거한 집계
+FROM BOOK;
+
+-- 모든 고객의 이름, 주소
+
+SELECT NAME, ADDRESS 
+FROM CUSTOMER;
+
+-- 2020년 7월 4일~7월 7일 사이에 주문 받은 도서의 주문번호
+SELECT *
+FROM ORDERS
+WHERE ORDERDATE >= '2020-07-04' AND ORDERDATE <= '2020-07-07';
+
+SELECT *
+FROM ORDERS
+WHERE ORDERDATE BETWEEN '2020-07-04' AND '2020-07-07';
+
+-- 2020년 7월 4일~7월 7일 사이에 주문 받은 도서를 제외한 도서의 주문번호
+SELECT *
+FROM ORDERS
+WHERE ORDERDATE < '2020-07-04' OR ORDERDATE > '2020-07-07';
+
+SELECT *
+FROM ORDERS
+WHERE ORDERDATE NOT BETWEEN '2020-07-04' AND '2020-07-07';
+
+-- 성이 ‘김’ 씨인 고객의 이름과 주소
+SELECT NAME, ADDRESS
+FROM CUSTOMER
+WHERE NAME LIKE '김%';
+
+--  성이 ‘김’ 씨이고 이름이 ‘아’로 끝나는 고객의 이름과 주소
+SELECT NAME, ADDRESS
+FROM CUSTOMER
+WHERE NAME LIKE '김%아';
