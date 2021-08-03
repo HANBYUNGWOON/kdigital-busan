@@ -49,6 +49,29 @@ SELECT *
 FROM EMPLOYEES
 WHERE PHONE_NUMBER LIKE '590%';
 
+-- 관리자별로(Manager_ID) 관리 대상 직원의 수를 조회
+SELECT 
+    MANAGER_ID
+    , COUNT(*) "직원수"
+FROM EMPLOYEES
+WHERE MANAGER_ID IS NOT NULL -- NULL 비교는 비교 연산자를 사용할 수 없습니다. = OR != OR <>
+GROUP BY MANAGER_ID;
+
+-- 업무(JOB_ID)별로 직원 수, 급여 평균, 최대 급여, 최소 급여를 조회
+SELECT 
+    JOB_ID
+    , COUNT(*) "직원수"
+    , AVG(SALARY) "급여평균"
+    , MIN(SALARY) "최저급여"
+    , MAX(SALARY) "최고급여"
+FROM EMPLOYEES
+GROUP BY JOB_ID
+ORDER BY AVG(SALARY) DESC;
+
+SELECT *
+FROM JOBS;
+
+
 
 
 
