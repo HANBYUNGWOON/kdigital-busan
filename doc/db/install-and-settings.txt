@@ -6,7 +6,7 @@
 
    부록 파일 참고
 
-3. create user madang
+3. create user madang ( run as system account )
 
 -- DROP USER c##madang CASCADE;
 CREATE USER c##madang IDENTIFIED BY "madang";
@@ -14,7 +14,7 @@ GRANT CONNECT, RESOURCE TO c##madang;
 GRANT CREATE VIEW, CREATE SYNONYM TO c##madang;
 GRANT UNLIMITED TABLESPACE TO c##madang;
 
-4. create user hr
+4. create user hr ( run as system account )
 
 -- DROP USER c##hr CASCADE;
 
@@ -23,10 +23,10 @@ GRANT CONNECT, RESOURCE TO c##hr;
 GRANT CREATE VIEW, CREATE SYNONYM TO c##hr;
 GRANT UNLIMITED TABLESPACE TO c##hr;
 
-5. execute madang-sql
+5. execute madang-sql ( run as madang account )
 
 @C:\path-for\demo_madang_init.sql
 
-6. execute hr-sql
+6. execute hr-sql ( run as hr account )
 
 @C:\path-for\oracle-hr-schema_CDB.sql

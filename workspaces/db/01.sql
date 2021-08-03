@@ -83,6 +83,14 @@ SELECT *
 FROM BOOK
 WHERE PUBLISHER = '굿스포츠' OR PUBLISHER = '대한미디어';
 
+-- 주문일자가 2020/07/04 인 주문 조회
+DESC ORDERS;
+SELECT * FROM ORDERS;
+SELECT *
+FROM ORDERS
+WHERE ORDERDATE = '2020-07-04'; -- 날짜 리터럴은 문자열과 같은 표현 ( 작은 따옴표 사용 )
+
+
 -- 도서를 이름순으로 검색하시오
 SELECT *
 FROM BOOK;
@@ -129,4 +137,40 @@ SELECT * FROM ORDERS;
 SELECT SUM(SALEPRICE) SALES_TOTAL
 FROM ORDERS
 WHERE CUSTID = 2;
+
+-- 고객이 주문한 도서의 총 판매액, 평균값, 최저가, 최고가를 구하시오.
+SELECT 
+    SUM(SALEPRICE) SALES_TOTAL
+    , COUNT(SALEPRICE) SALES_COUNT
+    , AVG(SALEPRICE) SALES_AVG
+    , MIN(SALEPRICE) SALES_MIN
+    , MAX(SALEPRICE) SALES_MAX
+FROM
+    ORDERS;
+    
+-- 마당서점의 도서 판매 건수를 구하시오
+SELECT COUNT(*) SALES_COUNT
+FROM ORDERS;
+
+-- 고객별로 주문한 도서의 총 수량과 총 판매액을 구하시오
+SELECT
+    CUSTID 
+    -- , ORDERID
+    , COUNT(SALEPRICE) SALES_COUNT
+    , SUM(SALEPRICE) SALES_TOTAL
+FROM
+    ORDERS
+GROUP BY CUSTID;
+
+-- 가격이 8,000원 이상인 도서를 구매한 고객에 대하여 고객별 주문 도서의 총 수량을 구하시오. 
+-- 단, 두 권 이상 구매한 고객만 구한다
+
+SELECT -- 5
+    CUSTID
+    , COUNT(*) SALES_COUNT 
+    , AVG(SALEPRICE) SALES_AVG
+FROM ORDERS -- 1
+WHERE SALEPRICE >= 8000 -- 2
+GROUP BY CUSTID -- 3
+HAVING COUNT(*) >= 2; -- 4
 
