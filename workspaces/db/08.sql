@@ -1,0 +1,53 @@
+-- Book 테이블에 새로운 도서 ‘스포츠 의학’을 삽입하시오. 
+-- 스포츠 의학은 한솔의학서적에서 출간했으며 가격은 90,000원이다.
+
+ALTER TABLE BOOK MODIFY BOOKID NUMBER;
+DESC BOOK;
+
+INSERT INTO BOOK (BOOKID, BOOKNAME, PUBLISHER, PRICE)
+VALUES (98, '스포츠의학-OCH', '한솔의학서적', 90000);
+COMMIT; -- 임시 저장된 작업을 확정 ( ROLLBACK은 임시 저장된 작업 취소 )
+
+SELECT * FROM BOOK;
+
+-- 데이터 삭제
+DELETE FROM BOOK 
+WHERE BOOKID = 98;
+COMMIT;
+SELECT * FROM BOOK;
+
+--Book 테이블에 새로운 도서 ‘스포츠 의학’을 삽입하시오. 스포츠 의학은
+--한솔의학서적에서 출간했으며 가격은 미정이다.
+
+DESC BOOK;
+
+INSERT INTO BOOK (BOOKID, BOOKNAME, PUBLISHER)
+VALUES (98, '스포츠 의학-OCH', '한솔의학서적');
+COMMIT;
+SELECT * FROM BOOK;
+
+DELETE FROM BOOK WHERE BOOKID = 98;
+COMMIT;
+SELECT * FROM BOOK;
+
+-- 수입도서 목록(Imported_book)을 Book 테이블에 모두 삽입하시오 
+CREATE TABLE NEWBOOK_OCH
+(
+    BOOKID NUMBER
+    , BOOKNAME VARCHAR2 (20)
+    , PUBLISHER VARCHAR2 (20)
+    , PRICE NUMBER
+);
+SELECT * FROM NEWBOOK_OCH;
+
+INSERT INTO NEWBOOK_OCH (BOOKID, BOOKNAME, PUBLISHER, PRICE)
+SELECT BOOKID, BOOKNAME, PUBLISHER, PRICE
+FROM IMPORTED_BOOK;
+
+COMMIT;
+
+SELECT * FROM NEWBOOK_OCH;
+
+
+
+
