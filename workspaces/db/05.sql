@@ -39,6 +39,67 @@ WHERE CUSTID IN ( SELECT CUSTID
                   WHERE BOOKID IN ( SELECT BOOKID
                                     FROM BOOK 
                                     WHERE PUBLISHER = '대한미디어' ) );
+                                    
+SELECT C.*
+FROM CUSTOMER C, ORDERS O, BOOK B
+WHERE C.CUSTID = O.CUSTID
+      AND
+      O.BOOKID = B.BOOKID
+      AND 
+      PUBLISHER = '대한미디어';
+      
+SELECT C.*
+FROM BOOK B
+INNER JOIN ORDERS O
+ON B.BOOKID = O.BOOKID
+INNER JOIN CUSTOMER C
+ON O.CUSTID = C.CUSTID
+WHERE B.PUBLISHER = '대한미디어';
+
+-- 출판사별로 출판사의 평균 도서 가격보다 비싼 도서를 구하시오
+
+SELECT PUBLISHER, AVG(PRICE)
+FROM BOOK
+GROUP BY PUBLISHER; -- 이상미디어 16500, ...
+
+SELECT *
+FROM BOOK
+WHERE PRICE > 16500 AND PUBLISHER = '이상미디어'; -- 각 출판사의 평균가격과 출판사 이름을 적용해서 실행
+
+SELECT B1.*
+FROM BOOK B1
+WHERE B1.PRICE >= ( SELECT AVG(B2.PRICE)
+                    FROM BOOK B2
+                    WHERE B2.PUBLISHER = B1.PUBLISHER );
+                    
+-- 주문이 있는 고객의 이름과 주소를 보이시오
+SELECT DISTINCT C.NAME, C.ADDRESS
+FROM CUSTOMER C, ORDERS O
+WHERE C.CUSTID = O.CUSTID;
+
+SELECT C.CUSTID, C.NAME, C.ADDRESS
+FROM CUSTOMER C
+WHERE EXISTS ( SELECT *
+               FROM ORDERS O
+               WHERE O.CUSTID = C.CUSTID );
+
+SELECT C.CUSTID, C.NAME, C.ADDRESS
+FROM CUSTOMER C
+WHERE C.CUSTID IN ( SELECT O.CUSTID
+                   FROM ORDERS O
+                   WHERE O.CUSTID = C.CUSTID );
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                     
