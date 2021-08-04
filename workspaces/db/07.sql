@@ -1,0 +1,57 @@
+-- 다음과 같은 속성을 가진 NewBook 테이블을 생성하시오,
+-- 정수형은 NUMBER를, 문자형은 가변형 문자타입인 VARCHAR2를 사용
+-- bookid(도서번호) ? NUMBER
+-- bookname(도서이름) ? VARCHAR2(20)
+-- publisher(출판사) ? VARCHAR2(20)
+-- price(가격) ? NUMBER
+
+CREATE TABLE NEWBOOK_OCH
+(
+    BOOKID NUMBER
+    , BOOKNAME VARCHAR2 (20)
+    , PUBLISHER VARCHAR2 (20)
+    , PRICE NUMBER
+);
+
+DROP TABLE NEWBOOK_OCH;
+
+-- 주식별자 지정
+CREATE TABLE NEWBOOK_OCH
+(
+    BOOKID NUMBER -- PRIMARY KEY
+    , BOOKNAME VARCHAR2 (20)
+    , PUBLISHER VARCHAR2 (20)
+    , PRICE NUMBER
+    -- , PRIMARY KEY (BOOKID)
+    -- , CONSTRAINT PK_NEWBOOK_OCH PRIMARY KEY (BOOKID)
+    , PRIMARY KEY (BOOKID, BOOKNAME)
+);
+DESC NEWBOOK_OCH;
+DROP TABLE NEWBOOK_OCH;
+
+-- 기타 제약 조건 : 기본값 지정, CHECK 제약 조건
+CREATE TABLE NEWBOOK_OCH
+(
+    BOOKID NUMBER
+    , BOOKNAME VARCHAR2 (20)
+    , PUBLISHER VARCHAR2 (20)
+    , PRICE NUMBER DEFAULT (0) CHECK(PRICE >= 0)
+    , PRIMARY KEY (BOOKID)
+);
+DESC NEWBOOK_OCH;
+DROP TABLE NEWBOOK_OCH;
+
+-- 다음과 같은 속성을 가진 NewCustomer 테이블을 생성하시오
+--custid(고객번호) - NUMBER, 기본키
+--name(이름) ? VARCHAR2(40)
+--address(주소) ? VARCHAR2(40)
+--phone(전화번호) ? VARCHAR2(30)
+CREATE TABLE NEWCUSTOMER_OCH
+(
+    CUSTID NUMBER
+    , NAME VARCHAR2 (40)
+    , ADDRESS VARCHAR2 (40)
+    , PHONE VARCHAR2 (30)
+    , PRIMARY KEY (CUSTID)
+);
+DESC NEWCUSTOMER_OCH;
