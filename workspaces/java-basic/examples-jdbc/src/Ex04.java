@@ -121,26 +121,25 @@ class WinningNumbers {
 public class Ex04 {
 
 	public static void main(String[] args) {
-		
-		// 1. read data from csv
-//		List<WinningNumbers> result = readLottoNumbersFromCsv("lotto-winning-numbers-by-round.csv");
-//		
-//		// test code
-//		for ( WinningNumbers wn : result ) {
-//			System.out.println(wn.toString());
-//		}
 
-		//3. drop table
+		//2-1. drop table
 //		dropWinningNumbersTable();
 //		System.out.println("테이블을 제거했습니다.");
 		
-		//2. create table
-		createWinningNumbersTable();
-		System.out.println("테이블을 만들었습니다.");
+		//2-2. create table
+//		createWinningNumbersTable();
+//		System.out.println("테이블을 만들었습니다.");
 		
-
+		// 1. read data from csv
+		List<WinningNumbers> result = readLottoNumbersFromCsv("lotto-winning-numbers-by-round.csv");
 		
-		//4. insert data into database
+		// test code
+		for ( WinningNumbers wn : result ) {
+			System.out.println(wn.toString());
+		}
+		
+		//3. insert data into database
+		
 		
 		//5. use database
 		
