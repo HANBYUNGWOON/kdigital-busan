@@ -134,14 +134,65 @@ public class Ex04 {
 		List<WinningNumbers> result = readLottoNumbersFromCsv("lotto-winning-numbers-by-round.csv");
 		
 		// test code
-		for ( WinningNumbers wn : result ) {
-			System.out.println(wn.toString());
-		}
+//		for ( WinningNumbers wn : result ) {
+//			System.out.println(wn.toString());
+//		}
 		
 		//3. insert data into database
-		
+		for (WinningNumbers wn : result) {
+			insertWinningNumbers(wn); 
+		}
+		System.out.println("데이터를 데이터베이스에 저장했습니다.");
 		
 		//5. use database
+		
+	}
+
+	private static void insertWinningNumbers(WinningNumbers wn) {
+
+		Connection conn = null;			// 연결 객체의 참조를 저장할 변수
+		PreparedStatement pstmt = null;	// 명령 객체의 참조를 저장할 변수
+		
+		// 0. 예외 처리 구조 만들기
+		try {
+			// 1. 드라이버 로딩 (등록)
+			Class.forName("oracle.jdbc.OracleDriver");
+			
+			// 2. 연결 객체 만들기
+			conn = DriverManager.getConnection(
+					"jdbc:oracle:thin:@211.197.18.246:1551:xe",	// 사용할 데이터베이스 연결 정보 
+					"madang", "madang");						// 데이터베이스 사용자 계정
+			
+			// 3. SQL 작성 + 명령 객체 만들기
+			String sql = "INSERT INTO WINNING_NUMBERS_OCH (RND, LOTTERY_DATE, NO1, NO2, NO3, NO4, NO5, NO6, BNO) " +
+						 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+			
+			// VALUES (1, '2021-08-06', 12, 44, ... )
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, wn.getRnd());
+			// java.util.Date --> java.sql.Date
+			// java.util.Date.getTime() : 1970년 1월 1일 0시 0분 0초로부터 경과된 1/1000 초단위의 경과 값
+			pstmt.setDate(2, new java.sql.Date(wn.getLotteryDate().getTime()));
+			pstmt.setInt(3, wn.getNo1());
+			pstmt.setInt(4, wn.getNo2());
+			pstmt.setInt(5, wn.getNo3());
+			pstmt.setInt(6, wn.getNo4());
+			pstmt.setInt(7, wn.getNo5());
+			pstmt.setInt(8, wn.getNo6());
+			pstmt.setInt(9, wn.getBno());
+			
+			// 4. 명령 실행
+			pstmt.executeUpdate(); // executeQuery : select 명령용, executeUpdate : insert, update, delete, ...
+			
+			// 5. ( 명령 실행 결과가 있다면 - SELECT인 경우 ) 결과 처리
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();// 콘솔에 오류 메시지를 출력
+		} finally {
+			// 6. 연결 닫기
+			try { pstmt.close(); } catch (Exception ex) {}
+			try { conn.close(); } catch (Exception ex) {}
+		}
 		
 	}
 
@@ -197,7 +248,7 @@ public class Ex04 {
 			// 3. SQL 작성 + 명령 객체 만들기
 			String sql = "CREATE TABLE WINNING_NUMBERS_OCH ( " +
 						 "	RND NUMBER PRIMARY KEY, " +
-						 "	LOTTORY_DATE DATE NOT NULL, " +
+						 "	LOTTERY_DATE DATE NOT NULL, " +
 						 "	NO1 NUMBER NOT NULL CHECK(NO1 >= 1 AND NO1 <= 45), " +
 						 "	NO2 NUMBER NOT NULL CHECK(NO2 >= 1 AND NO2 <= 45), " +
 						 "	NO3 NUMBER NOT NULL CHECK(NO3 >= 1 AND NO3 <= 45), " +
