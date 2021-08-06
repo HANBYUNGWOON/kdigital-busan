@@ -44,6 +44,7 @@ class ConfirmedCase {
 		this.contacted = contacted;
 	}
 	
+	// 생성자 메서드 : new ConfirmedCase(...) 할 때 자동으로 호출
 	public ConfirmedCase() {}
 	public ConfirmedCase(int caseNo, String confirmedDate, String region, String status, boolean contacted) {
 		this.caseNo = caseNo;
@@ -67,9 +68,11 @@ public class Ex05IO9 {
 
 	public static void main(String[] args) {
 		
+		
+		
 		// seoul-covid19.csv 파일을 읽어서 각 행별로 객체를 만들어서 목록에 저장
-		FileReader fr = null;
-		CSVReader csvr = null;
+		FileReader fr = null; 	// FileInputStream + InputStreamReader
+		CSVReader csvr = null;	// CSV 형식의 문자열을 읽어서 여러 가지 형식으로 변환 (여기서는 문자열의 배열) 
 		
 		ArrayList<ConfirmedCase> cases = new ArrayList<>(); // 파일에서 읽은 각 행의 데이터를 객체로 만들어서 목록으로 관리하기 위한 컬렉션 객체
 		
@@ -77,8 +80,8 @@ public class Ex05IO9 {
 			fr = new FileReader("seoul-covid19.csv");
 			csvr = new CSVReader(fr);
 			while (true) {
-				String[] row = csvr.readNext();
-				if (row == null) {
+				String[] row = csvr.readNext(); // 한 개의 행을 읽어서 CSV 표준에 해석 -> 문자열의 배열로 반환
+				if (row == null) { // 더이상 읽을 데이터가 없는 경우 (EOF)
 					break;
 				}
 				//System.out.printf("[%s][%s][%s][%s][%s]\n", row[0], row[1], row[5], row[7], row[13]);
@@ -100,6 +103,13 @@ public class Ex05IO9 {
 		for (ConfirmedCase c : cases) {
 			System.out.println(c);
 		}
+		
+		// 생성자 메서드 질문 답변을 위한 코드
+//		int x;
+//		ConfirmedCase c2;
+//		
+//		int u = 10; // 초기화
+//		ConfirmedCase c3 = new ConfirmedCase(1, "2", "3", "4", true); // 객체를 만들면서 값을 저장 (초기화 -> 생성자메서드 자동 호출)
 		
 
 	}
