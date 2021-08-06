@@ -1,15 +1,14 @@
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvValidationException;
 
 class WinningNumbers {
 
@@ -123,12 +122,63 @@ public class Ex04 {
 
 	public static void main(String[] args) {
 		
-		//read data from csv
-		List<WinningNumbers> result = readLottoNumbersFromCsv("lotto-winning-numbers-by-round.csv");
+		// 1. read data from csv
+//		List<WinningNumbers> result = readLottoNumbersFromCsv("lotto-winning-numbers-by-round.csv");
+//		
+//		// test code
+//		for ( WinningNumbers wn : result ) {
+//			System.out.println(wn.toString());
+//		}
 		
-		//create table 
+		//2. create table
+		createLottoTable();
+		System.out.println("테이블을 만들었습니다.");
 
 		//insert data into database
+		
+	}
+
+	private static void createLottoTable() {
+		
+		Connection conn = null;			// 연결 객체의 참조를 저장할 변수
+		PreparedStatement pstmt = null;	// 명령 객체의 참조를 저장할 변수
+		
+		// 0. 예외 처리 구조 만들기
+		try {
+			// 1. 드라이버 로딩 (등록)
+			Class.forName("oracle.jdbc.OracleDriver");
+			
+			// 2. 연결 객체 만들기
+			conn = DriverManager.getConnection(
+					"jdbc:oracle:thin:@211.197.18.246:1551:xe",	// 사용할 데이터베이스 연결 정보 
+					"madang", "madang");							// 데이터베이스 사용자 계정
+			
+			// 3. SQL 작성 + 명령 객체 만들기
+			String sql = "CREATE TABLE WINNING_NUMBERS_OCH ( " +
+						 "	RND NUMBER PRIMARY KEY, " +
+						 "	LOTTORY_DATE DATE NOT NULL, " +
+						 "	NO1 NUMBER NOT NULL CHECK(NO1 >= 1 AND NO1 <= 45), " +
+						 "	NO2 NUMBER NOT NULL CHECK(NO2 >= 1 AND NO2 <= 45), " +
+						 "	NO3 NUMBER NOT NULL CHECK(NO3 >= 1 AND NO3 <= 45), " +
+						 "	NO4 NUMBER NOT NULL CHECK(NO4 >= 1 AND NO4 <= 45), " +
+						 "	NO5 NUMBER NOT NULL CHECK(NO5 >= 1 AND NO5 <= 45), " +
+						 "	NO6 NUMBER NOT NULL CHECK(NO6 >= 1 AND NO6 <= 45), " +
+						 "	BNO NUMBER NOT NULL CHECK(BNO >= 1 AND BNO <= 45) " +
+						 ")";
+			pstmt = conn.prepareStatement(sql);
+			
+			// 4. 명령 실행
+			pstmt.executeUpdate(); // executeQuery : select 명령용, executeUpdate : insert, update, delete, ...
+			
+			// 5. ( 명령 실행 결과가 있다면 - SELECT인 경우 ) 결과 처리
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();// 콘솔에 오류 메시지를 출력
+		} finally {
+			// 6. 연결 닫기
+			try { pstmt.close(); } catch (Exception ex) {}
+			try { conn.close(); } catch (Exception ex) {}
+		}
 		
 	}
 
