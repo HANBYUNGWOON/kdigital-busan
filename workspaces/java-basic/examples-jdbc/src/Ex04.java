@@ -13,7 +13,7 @@ import com.opencsv.CSVReader;
 class WinningNumbers {
 
 	private int rnd;
-	private Date lotteryDate;
+	private Date lotteryDate; 		// name, userName, 
 	//private int[] numbers;
 	private int no1;
 	private int no2;
@@ -129,16 +129,58 @@ public class Ex04 {
 //		for ( WinningNumbers wn : result ) {
 //			System.out.println(wn.toString());
 //		}
+
+		//3. drop table
+//		dropWinningNumbersTable();
+//		System.out.println("테이블을 제거했습니다.");
 		
 		//2. create table
-		createLottoTable();
+		createWinningNumbersTable();
 		System.out.println("테이블을 만들었습니다.");
+		
 
-		//insert data into database
+		
+		//4. insert data into database
+		
+		//5. use database
 		
 	}
 
-	private static void createLottoTable() {
+	private static void dropWinningNumbersTable() {
+
+		Connection conn = null;			// 연결 객체의 참조를 저장할 변수
+		PreparedStatement pstmt = null;	// 명령 객체의 참조를 저장할 변수
+		
+		// 0. 예외 처리 구조 만들기
+		try {
+			// 1. 드라이버 로딩 (등록)
+			Class.forName("oracle.jdbc.OracleDriver");
+			
+			// 2. 연결 객체 만들기
+			conn = DriverManager.getConnection(
+					"jdbc:oracle:thin:@211.197.18.246:1551:xe",	// 사용할 데이터베이스 연결 정보 
+					"madang", "madang");						// 데이터베이스 사용자 계정
+			
+			// 3. SQL 작성 + 명령 객체 만들기
+			String sql = "DROP TABLE WINNING_NUMBERS_OCH ";
+			pstmt = conn.prepareStatement(sql);
+			
+			// 4. 명령 실행
+			pstmt.executeUpdate(); // executeQuery : select 명령용, executeUpdate : insert, update, delete, ...
+			
+			// 5. ( 명령 실행 결과가 있다면 - SELECT인 경우 ) 결과 처리
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();// 콘솔에 오류 메시지를 출력
+		} finally {
+			// 6. 연결 닫기
+			try { pstmt.close(); } catch (Exception ex) {}
+			try { conn.close(); } catch (Exception ex) {}
+		}
+		
+	}
+
+	private static void createWinningNumbersTable() {
 		
 		Connection conn = null;			// 연결 객체의 참조를 저장할 변수
 		PreparedStatement pstmt = null;	// 명령 객체의 참조를 저장할 변수
@@ -151,7 +193,7 @@ public class Ex04 {
 			// 2. 연결 객체 만들기
 			conn = DriverManager.getConnection(
 					"jdbc:oracle:thin:@211.197.18.246:1551:xe",	// 사용할 데이터베이스 연결 정보 
-					"madang", "madang");							// 데이터베이스 사용자 계정
+					"madang", "madang");						// 데이터베이스 사용자 계정
 			
 			// 3. SQL 작성 + 명령 객체 만들기
 			String sql = "CREATE TABLE WINNING_NUMBERS_OCH ( " +
