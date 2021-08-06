@@ -68,8 +68,6 @@ public class Ex05IO9 {
 
 	public static void main(String[] args) {
 		
-		
-		
 		// seoul-covid19.csv 파일을 읽어서 각 행별로 객체를 만들어서 목록에 저장
 		FileReader fr = null; 	// FileInputStream + InputStreamReader
 		CSVReader csvr = null;	// CSV 형식의 문자열을 읽어서 여러 가지 형식으로 변환 (여기서는 문자열의 배열) 
