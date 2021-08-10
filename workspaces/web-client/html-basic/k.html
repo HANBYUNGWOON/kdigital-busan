@@ -7,72 +7,83 @@
     <body>
         <h1 style="text-align: center">Form and Input Element Test</h1>
 
-        <table border="1" width="500" align="center">
-            <tr>
-                <th style="width:150px">아이디</th>
-                <!-- input 요소의 name 속성은 서버로 전송하는 데이터의 이름-->
-                <td><input name="id" type="text" style="width:300px"></td>
-            </tr>
-            <tr>
-                <th>패스워드</th>
-                <td><input name="passwd" type="password" style="width:300px"></td>
-            </tr>
-            <tr>
-                <th>패스워드확인</th>
-                <td><input name="confirm" type="password" style="width:300px"></td>
-            </tr>
-            <tr>
-                <th>이메일</th>
-                <td>
-                    <input name="emailid" type="text" style="width:140px">
-                    @
-                    <!-- <input name="emaildomain" type="text" style="width:140px"> -->
-                    <select name="emaildomain" style="width:140px">
-                        <option>naver.com</option>
-                        <option>daum.net</option>
-                        <option>gmail.com</option>
-                        <option>korea.com</option>
-                        <option>example.com</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th>성별</th>
-                <td>
-                    <!-- radio : 같은 name 속성의 값을 가진 요소 사이에 배타적 선택 -->
-                    <!-- value : 서버로 전송할 값 지정 -->
-                    <input name="gender" type="radio" value="female">여
-                    <input name="gender" type="radio" value="male">남
-                </td>
-            </tr>
-            <tr>
-                <th>취미</th>
-                <td>
-                    <!-- checkbox : 같은 name 속성의 값을 가진 요소들 중에서 여러 개 선택 -->
-                    <!-- value : 서버로 전송할 값 지정 -->
-                    <input name="hobby" type="checkbox" value="book">독서
-                    <input name="hobby" type="checkbox" value="movie">영화
-                    <input name="hobby" type="checkbox" value="exercise">운동
-                    <br>
-                    <input name="hobby" type="checkbox" value="travel">여행
-                    <input name="hobby" type="checkbox" value="cook">요리
-                    <input name="hobby" type="checkbox" value="music">음악
-                </td>
-            </tr>
-            <tr>
-                <th>이미지</th>
-                <td>
-                    <!-- file : file selector -->
-                    <input type="file" name="picture">
-                </td>
-            </tr>
-            <tr>
-                <th>가입인사</th>
-                <td>
-                    <!-- textarea : 다중 행 입력이 가능한 텍스트 입력 요소 -->
-                    <textarea name="greetings" cols="50" rows="5"></textarea>
-                </td>
-            </tr>
-        </table>
+        <form action="#" method="GET">
+            <table border="1" width="500" align="center">
+                <tr>
+                    <th style="width:150px">아이디</th>
+                    <!-- input 요소의 name 속성은 서버로 전송하는 데이터의 이름-->
+                    <td><input name="id" type="text" style="width:300px"></td>
+                </tr>
+                <tr>
+                    <th>패스워드</th>
+                    <td><input name="passwd" type="password" style="width:300px"></td>
+                </tr>
+                <tr>
+                    <th>패스워드확인</th>
+                    <td><input name="confirm" type="password" style="width:300px"></td>
+                </tr>
+                <tr>
+                    <th>이메일</th>
+                    <td>
+                        <input name="emailid" type="text" style="width:140px">
+                        @
+                        <!-- <input name="emaildomain" type="text" style="width:140px"> -->
+                        <select name="emaildomain" style="width:140px">
+                            <option>naver.com</option>
+                            <option>daum.net</option>
+                            <option>gmail.com</option>
+                            <option>korea.com</option>
+                            <option>example.com</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>성별</th>
+                    <td>
+                        <!-- radio : 같은 name 속성의 값을 가진 요소 사이에 배타적 선택 -->
+                        <!-- value : 서버로 전송할 값 지정 -->
+                        <input name="gender" type="radio" value="female">여
+                        <input name="gender" type="radio" value="male">남
+                    </td>
+                </tr>
+                <tr>
+                    <th>취미</th>
+                    <td>
+                        <!-- checkbox : 같은 name 속성의 값을 가진 요소들 중에서 여러 개 선택 -->
+                        <!-- value : 서버로 전송할 값 지정 -->
+                        <input name="hobby" type="checkbox" value="book">독서
+                        <input name="hobby" type="checkbox" value="movie">영화
+                        <input name="hobby" type="checkbox" value="exercise">운동
+                        <br>
+                        <input name="hobby" type="checkbox" value="travel">여행
+                        <input name="hobby" type="checkbox" value="cook">요리
+                        <input name="hobby" type="checkbox" value="music">음악
+                    </td>
+                </tr>
+                <tr>
+                    <th>이미지</th>
+                    <td>
+                        <!-- file : file selector -->
+                        <input type="file" name="picture">
+                    </td>
+                </tr>
+                <tr>
+                    <th>가입인사</th>
+                    <td>
+                        <!-- textarea : 다중 행 입력이 가능한 텍스트 입력 요소 -->
+                        <textarea name="greetings" cols="50" rows="5">11111</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:center">
+                        <!-- submit, image : 서버로 form을 전송하는 버튼 -->
+                        <!-- reset : 모든 입력요소를 처음 상태로 복원하는 버튼 -->
+                        <input type="submit" value="서버로 전송 1">
+                        <input type="image" src="" alt="서버로 전송 2">
+                        <input type="reset" value="다시입력">
+                    </td>
+                </tr>
+            </table>
+        </form>
     </body>
 </html>
