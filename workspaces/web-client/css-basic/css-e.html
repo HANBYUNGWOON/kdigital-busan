@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Context Selector</title>
+    <style type="text/css">
+    p {
+        font-size: 20pt;
+    }
+    /* 계층의 깊이와 관계 없이 id속성의 값이 a인 요소 하위에 존재하는 p를 선택 */
+    #a p {
+        color: hotpink;
+    }
+    /* id속성의 값이 a인 요소 한 단계 하위에 존재하는 p를 선택 */
+    #a > p {
+        font-weight: bold;
+    }
+    </style>
+</head>
+<body>
+
+    <div id="a">
+        <div id="b">
+            <p>스타일이 적용된 단락 1</p>
+        </div>
+        <p>스타일이 적용된 단락 2</p>
+    </div>
+    <p>스타일이 적용된 단락 3</p>
+     
+</body>
+</html>
