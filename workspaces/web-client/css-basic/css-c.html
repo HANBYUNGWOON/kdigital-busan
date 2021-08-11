@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Basic Selector</title>
+    <style type="text/css">
+    /* * : 전체 선택자, 모든 태그에 적용 */
+    * {
+       color: blue; 
+    }
+    /* tag 선택자 : 지정된 이름의 태그에 적용 */
+    h2 {
+        text-align: center;
+        color: green;
+    }
+    /* id 선택자 : id="고유한이름"에 지정된 태그에 적용 */
+    #b {
+        font-style: italic;
+        color: red;
+    }
+    /* class 선택자 : class="그룹이름"에 지정된 태그에 적용 */
+    .y {
+        background-color: purple;
+    }
+    .z {
+        background-color: orange;
+    }
+    
+    h2, #b, .z {
+        text-decoration: underline;
+    }
+    </style>
+</head>
+<body>
+
+    <h2 id='a'>스타일이 적용된 제목 1</h2>
+    <h2 id='b'>스타일이 적용된 제목 2</h2>
+    <h3 id='c' class='z y'>스타일이 적용된 제목 3</h3>
+    <div id='d' class='z'>스타일이 적용된 영역</div>
+    
+</body>
+</html>

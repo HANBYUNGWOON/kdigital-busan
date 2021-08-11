@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Attribute Selector</title>
+    <style type="text/css">
+    p {
+        font-size: 20pt;
+    }
+    /* data-attr 속성이 적용된 p 태그 선택 */
+    p[data-attr] {
+        color: red;
+    }
+    /* data-attr 속성의 값이 abc인 p 태그 선택 */
+    p[data-attr] {
+        color: red;
+    }
+    </style>
+</head>
+<body>
+
+    <!-- data-attrname : 사용자 정의 속성 -->
+    <p data-attr>스타일이 적용된 요소 1</p>
+    <p data-attr="abc">스타일이 적용된 요소 2</p>
+    <p data-attr="abcd">스타일이 적용된 요소 3</p>
+    <p data-attr="xyzd">스타일이 적용된 요소 4</p>
+    <p>스타일이 적용된 요소 5</p>
+    <p>스타일이 적용된 요소 6</p>
+    <p>스타일이 적용된 요소 7</p>
+     
+</body>
+</html>
