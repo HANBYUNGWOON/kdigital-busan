@@ -7,11 +7,20 @@
 </head>
 <body>
     
-    <button>눌러주세요</button>
-
+    <button id="button1">눌러주세요</button>
+    <button id="button2" onclick="clickHandler();">눌러주세요</button>
+    <button id="button3">눌러주세요</button>
+    <button id="button4">눌러주세요</button>
+    <button id="button5">눌러주세요</button>
+    
     <script type="text/javascript">
 
-        
+        // document.querySelector('css 선택자구문'); --> 지정된 선택자로 HTML요소를 찾아서 자바스크립트 객체로 반환
+        var button1 = document.querySelector('#button1'); // id="button1"인 HTML 요소를 찾아서 반환
+        function clickHandler() {
+            alert('눌러 주셔서 감사합니다 !!!!!');
+        }
+        button1.addEventListener('click', clickHandler); // HTML요소 객체와 함수를 이벤트로 연결
    
     </script>
 </body>
