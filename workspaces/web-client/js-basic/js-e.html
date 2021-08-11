@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+    table { width: 700px; height: 100px; margin: 0 auto; border: solid black 3px; }
+    td:nth-child(1) { background-color: red; }
+    td:nth-child(2) { background-color: orange; }
+    td:nth-child(3) { background-color: yellow; }
+    td:nth-child(4) { background-color: green; }
+    td:nth-child(5) { background-color: blue; }
+    td:nth-child(6) { background-color: navy; }
+    td:nth-child(7) { background-color: purple; }
+    hr { width: 700px; }
+    #canvas { width: 700px; height: 300px; margin: 0 auto; border: solid 1px black; }
+    </style>
+</head>
+<body>    
+    <table>
+        <tr>
+            <td id="red">&nbsp;</td>
+            <td id="orange">&nbsp;</td>
+            <td id="yellow">&nbsp;</td>
+            <td id="green">&nbsp;</td>
+            <td id="blue">&nbsp;</td>
+            <td id="navy">&nbsp;</td>
+            <td id="purple">&nbsp;</td>
+        </tr>
+    </table>
+    <hr>
+    <div id="canvas"></div>
+
+    <script type="text/javascript">
+
+    var canvas = document.querySelector("#canvas"); // id="canvas"인 HTML을 요소를 찾아서 객체로 반환
+
+    function redClickHandler() {
+        canvas.style.backgroundColor = 'red'; // HTML 요소 객체의 배경색 변경
+    }
+    var redTd = document.querySelector('#red');
+    redTd.addEventListener('click', redClickHandler);
+
+    function orangeClickHandler() {
+        canvas.style.backgroundColor = 'orange'; // HTML 요소 객체의 배경색 변경
+    }
+    var orangeTd = document.querySelector('#orange');
+    orangeTd.addEventListener('click', orangeClickHandler);
+
+    function yellowClickHandler() {
+        canvas.style.backgroundColor = 'yellow'; // HTML 요소 객체의 배경색 변경
+    }
+    var yellowTd = document.querySelector('#yellow');
+    yellowTd.addEventListener('click', yellowClickHandler);
+
+    </script>
+</body>
+</html>
