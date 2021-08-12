@@ -34,6 +34,52 @@
     // 난수발생 : Math.random() --> 0 ~ 1 사이의 난수 발생
     // 실수 -> 정수 : Math.ceil(값) (올림), Math.round(값) (반올림), Math.floor(값) (내림)
 
+    //0. 기능별 함수 만들기
+    function selectBasicNumbers() {
+        var numbers = new Array(6); // 요소 여섯 개로 구성된 배열 만들기
+        for (var i = 0; i < numbers.length; i++) {
+            var no = Math.floor( Math.random() * 45 ) + 1; // 1 ~ 45의 난수
+            numbers[i] = no;
+            for (var j = 0; j < i; j++) {
+                if (numbers[i] == numbers[j]) {
+                    i--; // or i = -1;
+                    break;
+                }
+            }
+        }
+        return numbers;
+    }
+    function checkMeanRange(numbers, min, max) {
+        var sum = 0;
+        for (var i = 0; i < numbers.length; i++) {
+            sum += numbers[i];
+        }
+        var mean = sum / numbers.length;
+
+        return (mean >= min && mean < max); // true os false
+
+    }
+    function showNumbers(numbers) {
+        var tds = document.querySelectorAll('tr:nth-child(2) > td'); // td[id] or td[id^=no]
+        for (var i = 0; i < numbers.length; i++) {
+            tds[i].innerHTML = numbers[i];
+        }
+    }
+    //1. 이벤트 처리기 함수 만들기
+    function generateNumberHandler() {
+
+        do {
+            var numbers = selectBasicNumbers();
+        } while (checkMeanRange(numbers, 20, 26)); // 자바였다면 numbers를 찾을 수 없다는 오류 발생
+
+        showNumbers(numbers);
+
+    }
+
+    //2. button 객체 가져오기 + 이벤트처리기 연결
+    var btn = document.querySelector("#btn-generate");
+    btn.addEventListener("click", generateNumberHandler);
+
     </script>
 </body>
 </html>
