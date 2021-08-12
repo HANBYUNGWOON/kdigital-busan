@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+    </style>
+</head>
+<body>
+
+    <button id="btn-show-alert">show alert</button>&nbsp;
+    <button id="btn-show-confirm">show confirm</button>&nbsp;
+    <button id="btn-start-timer">start timer</button>&nbsp;
+    <button id="btn-stop-timer">stop timer</button>&nbsp;
+    <hr>
+    <div id="message"></div>
+    
+    <script type="text/javascript">
+
+    function showAlert() {
+        window.alert("메시지 표시창입니다."); // window.alert에서 window 생략
+    }
+    var btn1 = document.querySelector("#btn-show-alert");
+    btn1.addEventListener('click', showAlert);
+
+    function showConfirm() {
+        var ok = confirm("메시지 표시창입니다."); // 
+        alert(ok);
+    }
+    var btn2 = document.querySelector("#btn-show-confirm");
+    btn2.addEventListener('click', showConfirm);
+
+    /////////////////////////////////////////////////////
+
+    function timerFunction() {
+        var message = document.querySelector("#message");
+        message.innerHTML = new Date();
+
+        timer = setTimeout(timerFunction, 1000);
+    }
+    var timer = null;
+    function startTimer() {
+        timer = setTimeout(timerFunction, 1000); //setTimeout(함수, 시간) : 지정된 시간 후에 함수 한 번 실행
+    }
+    var btn3 = document.querySelector("#btn-start-timer");
+    btn3.addEventListener('click', startTimer);
+
+    function stopTimer() {
+        clearTimeout(timer); // clearTimeout(timer): 지정된 예약 작업 취소
+        timer = null;
+    }
+    var btn4 = document.querySelector("#btn-stop-timer");
+    btn4.addEventListener('click', stopTimer);
+    
+    </script>
+</body>
+</html>
