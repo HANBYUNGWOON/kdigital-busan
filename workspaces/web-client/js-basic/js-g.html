@@ -39,17 +39,16 @@
     // 이벤트처리기함수는 이벤트가 발생했을 때 이벤트 관련 정보를 전달인자로 수신합니다.
     function tdClickHandler(event) {
         var td = event.target // event.target : 이벤트를 발생시킨 객체가 저장된 변수 (여기서는 click된 td)
-        //canvas.style.backgroundColor = td.style.backgroundColor; // 이벤트를 발생시킨 객체의 배경색을 canvas의 배경색으로 지정
-        canvas.style.backgroundColor = td.id; // 이벤트를 발생시킨 객체의 id 속성 값을 canvas의 배경색으로 지정
+        //canvas.style.backgroundColor = td.id; // 이벤트를 발생시킨 객체의 id 속성 값을 canvas의 배경색으로 지정
+        var style = window.getComputedStyle(td); // 전역 스타일시트 설정으로 적용된 style 정보를 담고 있는 객체 반환
+        canvas.style.backgroundColor = style.backgroundColor;
     }
-    var redTd = document.querySelector('#red');
-    redTd.addEventListener('click', tdClickHandler);
+    
+    var tds = document.querySelectorAll('td'); // 모든 td 요소를 배열로 가져와서
+    for (var i = 0; i < tds.length; i++) { 
+        tds[i].addEventListener('click', tdClickHandler); // 각 td 요소의 click 이벤트 연결
+    }
 
-    var orangeTd = document.querySelector('#orange');
-    orangeTd.addEventListener('click', tdClickHandler);
-
-    var yellowTd = document.querySelector('#yellow');
-    yellowTd.addEventListener('click', tdClickHandler);
 
     </script>
 </body>
