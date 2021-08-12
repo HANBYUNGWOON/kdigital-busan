@@ -20,10 +20,35 @@
     <script type="text/javascript">
 
     // 1. 문자열 -> 숫자, parseInt("정수"), parseFloat("실수")
-    alert("10" + "10"); // 1010
-    alert(parseInt("10") + parseInt("10")); // 20
+    // alert("10" + "10"); // 1010
+    // alert(parseInt("10") + parseInt("10")); // 20
 
-        
+    // 2. 입력요소의 입력 값은 value 속성으로 확인하거나 수정 할 수 있습니다.
+
+    // 1. 이벤트처리기 함수 만들기
+    function buttonClickHandler(event) {
+        //alert(event.target.id); // event : 이벤트 관련 정보, event.target : 이벤트를 발생시킨 객체
+        var exchangeRate = 1158.93;
+        var krw = document.querySelector('#krw'); // <input ... id="krw"
+        var usd = document.querySelector('#usd'); // <input ... id="usd"
+        switch(event.target.id) {
+        case "krw-to-usd": 
+            usd.value = parseFloat(krw.value) / exchangeRate;
+            break;
+        case "usd-to-krw": 
+            krw.value = parseFloat(usd.value) * exchangeRate;
+            break;
+        }
+    }
+
+    // 2. button 객체 (모두) 가져오기 
+    var buttons = document.querySelectorAll("button");
+    
+    // 3. 각 button 객체와 이벤트처리기 함수를 인벤트로 연결
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].addEventListener('click', buttonClickHandler);
+    }
+
     </script>
 </body>
 </html>
