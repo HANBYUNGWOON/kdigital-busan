@@ -12,8 +12,8 @@
 
     KRW : <input type="text" id="krw" value="0">
     <br>
-    <button id="krw-to-usd">KRW to USD</button>
-    <button id="usd-to-krw">USD to KRW</button>
+    <button id="krw-to-usd" name='ktu'>KRW to USD</button>
+    <button id="usd-to-krw" name='utk'>USD to KRW</button>
     <br>
     USD : <input type="text" id="usd" value="0">
 
@@ -31,11 +31,12 @@
         var exchangeRate = 1158.93;
         var krw = document.querySelector('#krw'); // <input ... id="krw"
         var usd = document.querySelector('#usd'); // <input ... id="usd"
-        switch(event.target.id) {
-        case "krw-to-usd": 
+        
+        switch(event.target.name) {
+        case "ktu": 
             usd.value = parseFloat(krw.value) / exchangeRate;
             break;
-        case "usd-to-krw": 
+        case "utk": 
             krw.value = parseFloat(usd.value) * exchangeRate;
             break;
         }
