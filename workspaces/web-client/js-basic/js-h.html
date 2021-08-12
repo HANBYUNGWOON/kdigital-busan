@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+   
+    </style>
+</head>
+<body>
+
+    <h2>배열 소개</h2>
+
+    <script type="text/javascript">
+
+        var ar2 = [];
+        var ar = ['red', 'orange', 'yellow'];
+        for (var i = 0; i < ar.length; i++) {
+            console.log(ar[i]);
+        }
+        console.log(ar);
+
+        ar.push('green'); // 배열에 새 데이터를 추가
+        ar.push('blue');
+        console.log(ar);
+ 
+        var item = ar.pop(); // 배열의 마지막 데이터를 뽑기 (원본 배열에서 제거)
+        console.log(ar);
+
+        item = ar.shift(); // 배열의 첫 번째 데이터를 뽑기 (원본 배열에서 제거)
+        console.log(ar);
+
+        ar.unshift('any color');
+        console.log(ar);
+        
+    </script>
+</body>
+</html>
