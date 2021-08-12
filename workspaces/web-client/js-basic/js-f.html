@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <title></title>
     <style type="text/css">
-    table { margin: 0 auto; border: solid black 3px; }
-    #canvas { margin: 0 auto; border: solid 1px black; }
     </style>
 </head>
 <body>    
@@ -30,12 +28,14 @@
     console.log(table.id);
     table.style.width = '700px';
     table.style.height = '100px';
+    table.style.margin = '0 auto';
+    table.style.border = 'solid 3px black';
 
     var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'navy', 'purple']; // 자바에서는 배열 초기화 : int[] ar = { 1, 2, 3 }
-    var tds = document.querySelectorAll("td"); // querySelectorAll -> 선택자에 해당하는 모든 요소 배열로 반환
+    var tds = document.querySelectorAll("td"); // querySelectorAll -> 선택자에 해당하는 모든 요소를 배열로 반환
     for (var i = 0; i < tds.length; i++) {
         var td = tds[i]; // 자바와 동일하게 배열의 요소는 배열이름[위치번호] 형식으로 접근
-        td.style.backgroundColor = colors[i];
+        td.style.backgroundColor = colors[i]; // css의 속성이름 : background-color  ( 변경규칙 : -문자 --> 대문자)
     }
 
     var hr = document.querySelector('hr');
@@ -44,6 +44,8 @@
     var canvas = document.querySelector('#canvas');
     canvas.style.width = '700px';
     canvas.style.height = '300px';
+    canvas.style.margin = '0 auto';
+    canvas.style.border = 'solid 1px black';
 
     </script>
 </body>
