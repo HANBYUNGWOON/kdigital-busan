@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    <button id="btn">눌러주세요</button>
+    <hr>
+    <div id="message"></div>
+
+    <!-- <script src="js/jquery-3.6.0.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+    <script type="text/javascript">
+
+    // $(document).ready(function() {    });
+    // $(function() { ... }) : jQuery의 main 함수 역할 (시작점)
+    $(function() {
+
+        // 1. 자바스크립트 구현
+        // var btn = document.querySelector("#btn");
+        // btn.addEventListener('click', function(event) {
+        //     var div = document.querySelector('#message');
+        //     div.innerHTML = new Date();
+        // });
+
+        //2. jQuery 구현
+        $('#btn').on('click', function(event) {
+            $('#message').html(new Date()); // html() --> innerHTML 
+        });
+
+    });
+   
+    </script>
+    
+</body>
+</html>
