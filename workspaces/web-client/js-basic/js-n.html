@@ -2,25 +2,31 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Image Slide</title>
+    <title></title>
     <style type="text/css">
-    table { margin: 0 auto; }
-    .btn { width: 100px; height: 100px; }
-    .small-img { width: 250px; height: 250px; }
-    .main-img { width: 400px; height: 400px; }
     </style>
 </head>
 <body>
     
-    <table>
-        <tr>
-            <td><button id="prev-btn" class="btn">이전</button></td>
-            <td><img id="prev-image" src="image/1.jpg" class="small-img"></td>
-            <td><img id="current-image" src="image/2.jpg" class="main-img"></td>
-            <td><img id="next-image" src="image/3.jpg" class="small-img"></td>
-            <td><button id="next-btn" class="btn">다음</button></td>
-        </tr>
-    </table>
+    <button id="btn">눌러주세요</button>
+    <hr>
+    <div id="message"></div>
+
+    <script type="text/javascript">
+    // 1. 함수를 변수에 저장 및 읽을 수 있습니다.
+    // function f() {
+    //     alert('function f');
+    // }
+    // var f1 = f; // 함수를 변수에 저장 (변수는 함수가 됩니다.)
+    // f(); // 함수 호출
+    // f1(); // 함수 호출
+
+    // 2. 익명 함수
+    var f2 = function () {
+        alert("function f2");
+    }
+    f2();
+    </script>
 
 </body>
 </html>
