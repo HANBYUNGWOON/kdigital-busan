@@ -15,12 +15,37 @@
     <table>
         <tr>
             <td><button id="prev-btn" class="btn">이전</button></td>
-            <td><img id="prev-image" src="image/1.jpg" class="small-img"></td>
-            <td><img id="current-image" src="image/2.jpg" class="main-img"></td>
-            <td><img id="next-image" src="image/3.jpg" class="small-img"></td>
+            <td><img id="prev-image" src="image/10.jpg" class="small-img"></td>
+            <td><img id="current-image" src="image/1.jpg" class="main-img"></td>
+            <td><img id="next-image" src="image/2.jpg" class="small-img"></td>
             <td><button id="next-btn" class="btn">다음</button></td>
         </tr>
     </table>
+
+    <script type="text/javascript">
+
+    var noImageFile = 'no_image.jpg';
+    var imageFiles = ["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg","9.jpg","10.jpg"];
+    var currentIndex = 0;
+
+    var prevImage = document.querySelector("#prev-image");
+    var currentImage = document.querySelector("#current-image");
+    var nextImage = document.querySelector("#next-image");
+
+    var prevButton = document.querySelector('#prev-btn');
+    prevButton.addEventListener("click", function(event) {
+        alert('prev');
+    });
+    var nextButton = document.querySelector('#next-btn');
+    nextButton.addEventListener('click', (event) => {
+        currentIndex++;
+        var prevIndex = currentIndex - 1;
+        var nextIndex = currentIndex + 1;
+        prevImage.src = 'image/' + imageFiles[prevIndex];
+        currentImage.src = 'image/' + imageFiles[currentIndex];
+        nextImage.src = 'image/' + imageFiles[nextIndex];
+    })
+    </script>
 
 </body>
 </html>
