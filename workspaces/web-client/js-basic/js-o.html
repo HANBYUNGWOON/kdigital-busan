@@ -68,6 +68,7 @@
     /////////////////////////////////////////////////////////////
     // 자동 이미지 교체 기능 구현
 
+    var timer = null;
     var autoChangeButton = document.querySelector('#auto-change-btn');
     autoChangeButton.addEventListener('click', function(event) {
         btn = event.target; // 이벤트를 발생시킨 객체
@@ -75,10 +76,20 @@
             btn.innerHTML = "중지"
             prevButton.disabled = true;
             nextButton.disabled = true;
+            //setTimeout : 지정된 작업을 지정된 시간 후에 한 번만 실행
+            //setInterval : (지정된 작업을 지정된 시간 후에 실행하는 것)을 반복
+            timer = window.setInterval(function() {
+                currentIndex++;
+                if (currentIndex >= imageFiles.length) {
+                    currentIndex = 0;
+                }
+                changeImage();
+            }, 500);
         } else {    // "중지인 경우"
             btn.innerHTML = "자동"
             prevButton.disabled = false;
             nextButton.disabled = false;
+            window.clearInterval(timer);    // setInterval로 예약한 작업을 취소
         }
     });
     </script>
