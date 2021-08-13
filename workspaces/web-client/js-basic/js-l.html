@@ -8,21 +8,44 @@
     </style>
 </head>
 <body>
+
+    <h3>History Object Test</h3>
     
-    [ <a href="javascript:goBack()">뒤로 이동</a> ]
-    &nbsp;
-    [ <a href="javascript:goForward()">앞으로 이동</a> ]
-
+    [ <a href="javascript:goBack()">뒤로 이동</a> ]&nbsp;
+    [ <a href="javascript:goForward()">앞으로 이동</a> ]&nbsp;
+    [ <a href="javascript:goBack2()">뒤로 2페이지 이동</a> ]
     <script type="text/javascript">
-
         function goBack() {
             history.back();
         }
-
         function goForward() {
             history.forward();
         }
-    
+        function goBack2() {
+            history.go(-2);
+        }
     </script>
+
+    <hr>
+
+    <h3>Location Object Test</h3>
+    [ <a id="lnk-google" href="">구글 개발자 사이트</a> ]&nbsp;
+    [ <a id="lnk-apple" href="">애플 개발자 사이트</a> ]
+    <script type="text/javascript">
+    function goGoogle(event) {
+        event.preventDefault(); // 이벤트를 발생시킨 객체의 기본 동작 수행을 막는 명령
+        location.href = "http://developers.google.com";
+    }
+    var gLink = document.querySelector("#lnk-google");
+    gLink.addEventListener('click', goGoogle);
+
+    function goApple(event) {
+        event.preventDefault();
+        location.href = "http://developer.apple.com";
+    }
+    var aLink = document.querySelector("#lnk-apple");
+    aLink.addEventListener('click', goApple);
+    </script>
+ 
 </body>
 </html>
