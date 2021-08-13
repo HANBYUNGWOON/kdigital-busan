@@ -5,9 +5,11 @@
     <title>Image Slide</title>
     <style type="text/css">
     table { margin: 0 auto; }
-    .btn { width: 100px; height: 100px; }
+    .btn { width: 100px; height: 50px; }
     .small-img { width: 250px; height: 250px; }
     .main-img { width: 400px; height: 400px; }
+    tr:nth-child(2) > td { text-align: center; }
+    #auto-change-btn { width: 100px; height: 50px; }
     </style>
 </head>
 <body>
@@ -19,6 +21,9 @@
             <td><img id="current-image" src="image/1.jpg" class="main-img"></td>
             <td><img id="next-image" src="image/2.jpg" class="small-img"></td>
             <td><button id="next-btn" class="btn">다음</button></td>
+        </tr>
+        <tr>
+            <td colspan="5"><button id="auto-change-btn">자동</button></td>
         </tr>
     </table>
 
@@ -34,17 +39,48 @@
 
     var prevButton = document.querySelector('#prev-btn');
     prevButton.addEventListener("click", function(event) {
-        alert('prev');
+        currentIndex--;
+        if (currentIndex < 0) {
+            currentIndex = imageFiles.length - 1;
+        }
+        changeImage();
     });
     var nextButton = document.querySelector('#next-btn');
     nextButton.addEventListener('click', (event) => {
         currentIndex++;
-        var prevIndex = currentIndex - 1;
+        if (currentIndex >= imageFiles.length) {
+            currentIndex = 0;
+        }
+        changeImage();
+    })
+    function changeImage() {
+        var prevIndex = currentIndex - 1 == -1 ? imageFiles.length - 1 : currentIndex - 1;
+        // var nextIndex = currentIndex + 1 == imageFiles.length ? 0 : currentIndex + 1; 
         var nextIndex = currentIndex + 1;
+        if (nextIndex == imageFiles.length) {
+            nextIndex = 0;
+        }
         prevImage.src = 'image/' + imageFiles[prevIndex];
         currentImage.src = 'image/' + imageFiles[currentIndex];
         nextImage.src = 'image/' + imageFiles[nextIndex];
-    })
+    }
+
+    /////////////////////////////////////////////////////////////
+    // 자동 이미지 교체 기능 구현
+
+    var autoChangeButton = document.querySelector('#auto-change-btn');
+    autoChangeButton.addEventListener('click', function(event) {
+        btn = event.target; // 이벤트를 발생시킨 객체
+        if (btn.innerHTML === "자동") {
+            btn.innerHTML = "중지"
+            prevButton.disabled = true;
+            nextButton.disabled = true;
+        } else {    // "중지인 경우"
+            btn.innerHTML = "자동"
+            prevButton.disabled = false;
+            nextButton.disabled = false;
+        }
+    });
     </script>
 
 </body>
