@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+   </style>
+</head>
+<body>    
+    <table id="rainbow">
+        <tr>
+            <td id="red">&nbsp;</td>
+            <td id="orange">&nbsp;</td>
+            <td id="yellow">&nbsp;</td>
+            <td id="green">&nbsp;</td>
+            <td id="blue">&nbsp;</td>
+            <td id="navy">&nbsp;</td>
+            <td id="purple">&nbsp;</td>
+        </tr>
+    </table>
+    <hr>
+    <div id="canvas"></div>
+
+    <!-- <script src="js/jquery-3.6.0.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+    <script type="text/javascript">
+
+    $(function() {
+        // .css() : style="name:value"
+        // $('#rainbow').css('width', 700)
+        //              .css('height', 100)
+        //              .css('margin', '0 auto')
+        //              .css('border', 'solid 1px black');
+        $('#rainbow').css({'width': 700, 
+                           'height': 100,
+                           'margin': '0 auto',
+                           'border': 'solid 1px black'});
+
+        var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'navy', 'purple'];
+        // each() : 집합객체에 포함된 각 객체를 순회하면서 지정된 함수 호출
+        $('#rainbow td').each(function(idx, td) { // idx : 순서번호, td : 현재 처리 중인 객체 (HTML 객체)
+            $(td).css('background-color', colors[idx]); // $(HTML 객체) -> 집합 객체 생성
+        });
+    
+        $('hr').css('width', 700);
+        $('#canvas').css({'width': 700, 
+                           'height': 300,
+                           'margin': '0 auto',
+                           'border': 'solid 1px black'});
+
+    });
+
+    var canvas = document.querySelector("#canvas"); // id="canvas"인 HTML을 요소를 찾아서 객체로 반환
+
+    // 이벤트처리기함수는 이벤트가 발생했을 때 이벤트 관련 정보를 전달인자로 수신합니다.
+    function tdClickHandler(event) {
+        var td = event.target // event.target : 이벤트를 발생시킨 객체가 저장된 변수 (여기서는 click된 td)
+        //canvas.style.backgroundColor = td.id; // 이벤트를 발생시킨 객체의 id 속성 값을 canvas의 배경색으로 지정
+        var style = window.getComputedStyle(td); // 전역 스타일시트 설정으로 적용된 style 정보를 담고 있는 객체 반환
+        canvas.style.backgroundColor = style.backgroundColor;
+    }
+    
+    var tds = document.querySelectorAll('td'); // 모든 td 요소를 배열로 가져와서
+    for (var i = 0; i < tds.length; i++) { 
+        tds[i].addEventListener('click', tdClickHandler); // 각 td 요소의 click 이벤트 연결
+    }
+
+
+    </script>
+</body>
+</html>
