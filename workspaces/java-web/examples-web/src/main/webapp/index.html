@@ -14,13 +14,26 @@
 			<li><a href="hello3">Servlet Test 3</a></li>
 		</ul>
 	</h4>
-	<br>
-	<h3>2. SERVLET REQUEST TEST</h3>
+	
+	<h3>2-1. SERVLET REQUEST TEST (GET)</h3>
+	<a href="handle-request?name=김윤석&email=kys@example.com">서버로 데이터 전송</a>
+	
+	<h3>2-2. SERVLET REQUEST TEST (GET)</h3>
 	<form action="handle-request" method="get">
 		이름 : <input type="text" name="name"><br>	<!-- name 속성 : 서버로 데이터를 전송할 때 데이터에 붙는 이름 -->
 		메일 : <input type="text" name="email"><br>
 		<input type="submit" value="전송">
 	</form>
+	
+	<h3>3. SERVLET REQUEST TEST (POST)</h3>
+	<form action="handle-request" method="post">
+		이름 : <input type="text" name="name"><br>	<!-- name 속성 : 서버로 데이터를 전송할 때 데이터에 붙는 이름 -->
+		메일 : <input type="text" name="email"><br>
+		<input type="submit" value="전송">
+	</form>
+	
+	<h3>4. 연습</h3>
+	<a href="select-winning-numbers">로또 당첨 예상 번호 뽑기</a>
 
 </body>
 </html>
