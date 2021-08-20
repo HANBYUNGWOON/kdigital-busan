@@ -22,7 +22,7 @@
 		        <div class="inputsubtitle">회원기본정보</div>
 
 		        <form id="registerform" 
-		        	  action="/demoweb/account/register.action" method="post"><!-- 상대경로표시 -->
+		        	  action="register.action" method="post"><!-- 상대경로표시 -->
 		        <table>
 		            <tr>
 		                <th>아이디(ID)</th>
