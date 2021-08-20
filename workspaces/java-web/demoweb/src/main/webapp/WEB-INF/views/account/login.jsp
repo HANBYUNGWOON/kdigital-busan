@@ -21,6 +21,7 @@
 		        <div class="inputsubtitle">로그인정보</div>
 		        
 		        <form action="login.action" method="post">
+		        <!-- <form action="/demoweb/account/login.action" method="post"> -->
 		       
 		        <table>
 		            <tr>
@@ -41,6 +42,7 @@
 		        	<input type="submit" value="로그인" style="height:25px" />
 		        	<input type="button" value="취소" style="height:25px" />
 		        </div>
+		        
 		        </form>
 		        
 		    </div>

@@ -3,10 +3,11 @@
     	 pageEncoding="utf-8"%>
 
 		<% String bgColor = request.getParameter("bgcolor"); %>
+		
 		<% if (bgColor == null) { %>
-		<div id="header">
+		<div id='header'>
 		<% } else { %>
-		<div id="header" style="background-color:<%= bgColor %>">
+		<div id='header' style='background-color:<%= bgColor %>'>
 		<% } %>
             <div class="title">
                 <a href="/demoweb/home.action">DEMO WEBSITE</a>
