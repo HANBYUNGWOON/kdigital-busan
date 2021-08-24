@@ -20,6 +20,9 @@ public class UploadServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		try {
+			
 		// 1. 요청 데이터 읽기 + 분해
 		// 2. 1의 결과를 배열 또는 리스트로 반환
 		if (!ServletFileUpload.isMultipartContent(req)) { // 현재 요청이 파일 첨부인지 확인 : multipart/form-data 여부
@@ -28,8 +31,7 @@ public class UploadServlet extends HttpServlet {
 		}
 		
 		//ServletContext application -> jsp에서 application 내장 객체와 같은 객체
-		ServletContext application = req.getServletContext();
-		
+		ServletContext application = req.getServletContext();		
 
 		//경로 문자열을 저장할 변수
 		//application.getRealPath('웹경로')
@@ -38,11 +40,10 @@ public class UploadServlet extends HttpServlet {
 		String path = application.getRealPath("/upload-files");		//최종 파일 저장 경로
 		String tempPath = application.getRealPath("/upload-temp");	//임시 파일 저장 경로
 
-		// System.out.println(path);
-		// System.out.println(tempPath);
+		System.out.println(path);
+		System.out.println(tempPath);
 
-
-		//전송 데이터 각 요소를 분리해서 개별 객체를 만들때 사용할 처리기
+		//분리된 요소를 처리할 때 사용할 처리기
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		factory.setSizeThreshold(1024 * 1024 * 2);	//임시 파일을 만들지 결정하는 기준 설정
 		factory.setRepository(new File(tempPath));	//임시 파일 저장 경로 지정
@@ -53,7 +54,6 @@ public class UploadServlet extends HttpServlet {
 
 		//요청 정보를 파싱하고 개별 객체의 목록을 반환
 		List<FileItem> items = uploader.parseRequest(req);
-
 
 		////////////////////////////////////////////////////////////////////////////////
 		// 3. 2의 결과를 사용해서 데이터 처리
@@ -77,6 +77,12 @@ public class UploadServlet extends HttpServlet {
 		}
 
 		resp.sendRedirect("g.file-list.jsp");
+		
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		
 
 		
 		

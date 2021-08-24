@@ -12,7 +12,7 @@
 	
 	<h3>파일 업로드 테스트</h3>
 	<hr>
-	<form action="" 
+	<form action="file-upload" 
 		  method="post" 
 		  enctype="multipart/form-data">
 		  
