@@ -1,3 +1,4 @@
+<%@ page import="com.demoweb.vo.MemberVO" %>
 <%@ page language="java" 
 		 contentType="text/html; charset=utf-8"
     	 pageEncoding="utf-8"%>
@@ -13,12 +14,12 @@
                 <a href="/demoweb/home.action">DEMO WEBSITE</a>
             </div>
             <div class="links">
-            <% String id = (String)session.getAttribute("loginuser"); %>
-            <% if (id == null) { // 로그인하지 않은 경우 %>
+            <% MemberVO member = (MemberVO)session.getAttribute("loginuser"); %>
+            <% if (member == null) { // 로그인하지 않은 경우 %>
             	<a href="/demoweb/account/login.action">로그인</a>
                 <a href="/demoweb/account/register.action">회원가입</a>
             <% } else { //로그인한 경우 %>
-                <%= id %>님 환영합니다.
+                <%= member.getMemberId() %>님 환영합니다.
                 <a href="/demoweb/account/logout.action">로그아웃</a>
             <% } %>
             </div>

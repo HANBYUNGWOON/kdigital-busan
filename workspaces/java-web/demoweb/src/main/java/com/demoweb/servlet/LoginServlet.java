@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.demoweb.service.AuthService;
+import com.demoweb.vo.MemberVO;
+
 @WebServlet(urlPatterns = { "/account/login.action" })
 public class LoginServlet extends HttpServlet {
 	
@@ -34,13 +37,13 @@ public class LoginServlet extends HttpServlet {
 		System.out.printf("[%s][%s]\n", memberId, passwd); // 테스트 코드
 		
 		//2. 요청 데이터 처리하기 ( 로그인 처리 )
+		AuthService authService = new AuthService();
+		MemberVO member = authService.findMemberByIdAndPasswd(memberId, passwd);
 		
-
-		int count = 0;
-		if (count > 0) {
+		if (member != null) {
 			// 서블릿에서는 session JSP와 같이 내장 객체가 아니기 때문에 req.getSession() 으로 세션 가져오기 수행
 			HttpSession session = req.getSession();
-			session.setAttribute("loginuser", memberId); // 로그인 처리 -> session 객체에 데이터 저장
+			session.setAttribute("loginuser", member); // 로그인 처리 -> session 객체에 데이터 저장
 			
 			//3. 응답컨텐츠 생산하기 ( JSP로 forward 또는 다른 Servlet으로 redirect )
 			resp.sendRedirect("/demoweb/home.action");

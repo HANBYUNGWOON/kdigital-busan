@@ -14,7 +14,10 @@ public class AuthService {
 
 	public MemberVO findMemberByIdAndPasswd(String memberId, String passwd) {
 		
-		return null;
+		MemberDao memberDao = new MemberDao();
+		MemberVO member = memberDao.selectMemberByIdAndPasswd(memberId, passwd);
+		return member;
+		
 	}
 	
 }
