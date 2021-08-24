@@ -51,7 +51,7 @@
 		                       		            
 		        </table>
 		        <div class="buttons">
-		        	<input id="register" type="submit" value="등록" style="height:25px" />
+		        	<input id="register" type="button" value="등록" style="height:25px" />
 		        	<input id="cancel" type="button" value="취소" style="height:25px"  />
 
 		        </div>
@@ -60,11 +60,16 @@
 		</div>   	
 	
 	</div>
-	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script type="text/javascript">
 	$(function() {
+		
 		$('#cancel').on('click', function(event) {
 			location.href = "/demoweb/home.action";
+		});
+		
+		$('#register').on('click', function(event) {
+			
 		});
 	});
 	</script>
