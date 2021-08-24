@@ -12,4 +12,9 @@ public class AuthService {
 		
 	}
 
+	public MemberVO findMemberByIdAndPasswd(String memberId, String passwd) {
+		
+		return null;
+	}
+	
 }
