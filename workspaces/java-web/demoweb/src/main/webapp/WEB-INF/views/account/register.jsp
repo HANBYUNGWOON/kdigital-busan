@@ -70,6 +70,31 @@
 		
 		$('#register').on('click', function(event) {
 			
+			/* 
+			var memberId = $('#memberId').val();
+			if (memberId.length < 6 || memberId.length > 12) {
+				alert('아이디 형식 오류 (6 ~ 12개의 영문자 또는 숫자)');
+				return;
+			} 
+			*/
+			
+			// 문자열의 형식을 분석, 검증하는 도구 -> 정규 표현식 (regular expression)
+			var re = /^[A-Za-z0-9]{6,12}$/;
+			var memberId = $('#memberId').val();
+			if ( !re.test(memberId) ) {
+				alert('아이디 형식 오류 (6 ~ 12개의 영문자 또는 숫자)')
+				return;
+			}
+			
+			re = /[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]$/i;
+			var email = $('#email').val();
+			if ( !re.test(email) ) {
+				alert('이메일 형식 오류');
+				return;
+			}
+			
+			$('#registerform').submit(); // form을 서버로 전송
+			
 		});
 	});
 	</script>
