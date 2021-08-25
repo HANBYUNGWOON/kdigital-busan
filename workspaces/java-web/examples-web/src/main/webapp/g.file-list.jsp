@@ -12,8 +12,10 @@
 </head>
 <body>
 
-	
-	
+	<h3>
+		<a href="g.file-upload-form.jsp">파일 업로드</a>
+	</h3>
+	<hr>
 	<%-- 1. 업로드 파일 저장소(폴더)에서 파일 목록 읽기 --%>
 	<% 
 	String path = application.getRealPath("/upload-files");
@@ -27,7 +29,7 @@
 	<% } else { %>
 		<h3>업로드 파일 목록</h3>
 	<% } %>
-	<hr>
+
 	<table width="700" border="1">
 		<tr>
 			<th>파일이름</th>
@@ -36,7 +38,11 @@
 		</tr>
 	<% for (File f : files) { %>
 		<tr>
-			<td><%= f.getName() %></td>
+			<td>
+				<%= f.getName() %>
+				&nbsp;
+				[<a href="download?file=<%= f.getName() %>">다운로드</a>]
+			</td>
 			<td><%= f.length() %></td>
 			<td><%= new Date(f.lastModified()) %></td>
 		</tr>

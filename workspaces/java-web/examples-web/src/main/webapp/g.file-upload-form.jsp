@@ -9,9 +9,12 @@
 <title></title>
 </head>
 <body>
-	
-	<h3>파일 업로드 테스트</h3>
+	<h3>
+		<a href="g.file-list.jsp">목록보기</a>
+	</h3>
 	<hr>
+	<h3>파일 업로드 테스트</h3>
+
 	<form action="file-upload" 
 		  method="post" 
 		  enctype="multipart/form-data">
