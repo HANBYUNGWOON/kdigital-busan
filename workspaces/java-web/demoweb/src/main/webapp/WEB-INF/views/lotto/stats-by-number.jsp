@@ -60,18 +60,20 @@
 			<br><br>
 			
 			<table border="1" style="width:600px;margin:0 auto">
-				<tr style="background-color:#f5f5f5;height:30px">
-					<th style="width:50px">제목1</th>
-					<th style="width:300px">제목2</th>
-					<th style="width:125px">제목3</th>
-					<th style="width:125px;text-align:center">제목4</th>
+				<tr style="background-color:#f5f5f5;height:40px">
+					<th style="width:80px">번호</th>
+					<th>그래프</th>
+					<th style="width:80px">당첨횟수</th>
 				</tr>
 				
-				<tr style="height:30px">
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+				<tr style="height:40px">
+					<td style="text-align:center">
+						<span class="ball_645 sml ball1">1</span>
+					</td>
+					<td>
+						<div style="background-color:orange;width:50%;">&nbsp;</div>
+					</td>
+					<td style="text-align:center"></td>
 				</tr>
 								
 			</table>

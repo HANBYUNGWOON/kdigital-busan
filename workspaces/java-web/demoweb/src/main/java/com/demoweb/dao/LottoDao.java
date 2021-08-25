@@ -3,6 +3,7 @@ package com.demoweb.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 
 import com.demoweb.vo.WinningNumbers;
@@ -158,6 +159,52 @@ public class LottoDao {
 			try { pstmt.close(); } catch (Exception ex) {}
 			try { conn.close(); } catch (Exception ex) {}
 		}
+		
+	}
+	
+	// 번호별로 1등 당첨에 포함된 횟수 조회
+	public int[] selectStatsByNumber() {
+
+		Connection conn = null;				// 연결 객체의 참조를 저장할 변수
+		PreparedStatement pstmt = null;		// 명령 객체의 참조를 저장할 변수
+		ResultSet rs = null;				// 조회 결과의 참조를 저장할 변수
+		int[] countByNumber = new int[45];	// 번호별 당첨 횟수를 저장할 배열
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+			conn = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/demoweb",	// 사용할 데이터베이스 연결 정보 
+					"kdigital", "mysql");				// 데이터베이스 사용자 계정
+			
+			String sql = "SELECT COUNT(*) FROM WINNING_NUMBERS " +
+						 "WHERE NO1=? OR NO2=? OR NO3=? OR NO4=? OR NO5=? OR NO6=? OR BNO=?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			for (int no = 1; no <= 45; no++) { // 숫자 1 ~ 45까지 당첨 횟수를 뽑기 위한 반복문
+				pstmt.clearParameters();// 앞에서 지정한 파라미터 값 제거
+
+				for (int i = 1; i <= 7; i++) { // SQL의 ?를 채우기 위한 반복문
+					pstmt.setInt(i, no);
+				}
+				
+				rs = pstmt.executeQuery();
+				rs.next();// 무조건 결과가 1개 있는 조회이기 때문에 if 또는 while 을 사용하지 않았습니다
+				int count = rs.getInt(1);
+				countByNumber[no-1] = count;
+				rs.close();
+			}
+			
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try { rs.close(); } catch (Exception ex) {}
+			try { pstmt.close(); } catch (Exception ex) {}
+			try { conn.close(); } catch (Exception ex) {}
+		}
+		
+		return countByNumber;
 		
 	}
 	

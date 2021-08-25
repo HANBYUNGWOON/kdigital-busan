@@ -63,4 +63,9 @@ public class LottoService {
 		return result;
 	}
 
+	public int[] loadStatsByNumber() {
+		LottoDao lottoDao = new LottoDao();
+		int[] countByNumber = lottoDao.selectStatsByNumber();
+		return countByNumber;
+	}
 }
