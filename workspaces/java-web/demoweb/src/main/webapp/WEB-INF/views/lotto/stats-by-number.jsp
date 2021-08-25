@@ -59,22 +59,32 @@
 			[ <a href="write.action">작업 링크</a> ]
 			<br><br>
 			
+			<%
+			int[] countByNumber = (int[])request.getAttribute("countByNumber");
+			double max = 0;
+			for (int i = 0; i < countByNumber.length; i++) {
+				if (max < countByNumber[i]) {
+					max = countByNumber[i];
+				}
+			}
+			%>			
 			<table border="1" style="width:600px;margin:0 auto">
 				<tr style="background-color:#f5f5f5;height:40px">
 					<th style="width:80px">번호</th>
 					<th>그래프</th>
 					<th style="width:80px">당첨횟수</th>
 				</tr>
-				
+				<% for (int i = 0; i < countByNumber.length; i++) { %>
 				<tr style="height:40px">
 					<td style="text-align:center">
-						<span class="ball_645 sml ball1">1</span>
+						<span class="ball_645 sml ball<%= (i / 10) + 1 %>"><%= i + 1 %></span>
 					</td>
 					<td>
-						<div style="background-color:orange;width:50%;">&nbsp;</div>
+						<div style="background-color:orange;width:<%= (countByNumber[i] / max) * 100 %>%;">&nbsp;</div>
 					</td>
-					<td style="text-align:center"></td>
+					<td style="text-align:center"><%= countByNumber[i] %></td>
 				</tr>
+				<% } %>
 								
 			</table>
 			<br /><br /><br /><br />
