@@ -29,9 +29,9 @@
             <div>
                 <ul>
                     <li><a href="#">사용자관리</a></li>
+                    <li><a href="/demoweb/lotto/init-data.action">데이터초기화</a></li>
 					<li><a href="/demoweb/lotto/stats-by-number.action">번호별통계</a></li>
-					<li><a href="#">자료실</a></li>
-					<li><a href="#">게시판</a></li>
+					<li><a href="/demoweb/lotto/stats-by-section.action">구간별통계</a></li>
                 </ul>
             </div>
 		</div>
