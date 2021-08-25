@@ -29,7 +29,7 @@
             <div>
                 <ul>
                     <li><a href="#">사용자관리</a></li>
-					<li><a href="#">메일보내기</a></li>
+					<li><a href="/demoweb/lotto/stats-by-number.action">번호별통계</a></li>
 					<li><a href="#">자료실</a></li>
 					<li><a href="#">게시판</a></li>
                 </ul>
