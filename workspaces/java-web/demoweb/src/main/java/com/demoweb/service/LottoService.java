@@ -1,6 +1,33 @@
 package com.demoweb.service;
 
+import java.io.FileReader;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.demoweb.dao.LottoDao;
+import com.demoweb.vo.WinningNumbers;
+import com.opencsv.CSVReader;
+
 public class LottoService {
+	
+	public void initData(String csvPath) {
+		// csv 파일을 읽어서 WinningNumbers 리스트 만들기
+		List<WinningNumbers> list = readLottoNumbersFromCsv(csvPath);
+		
+		LottoDao lottoDao = new LottoDao();
+		// 테이블 제거
+		lottoDao.dropWinningNumbersTable();
+		// 테이블 생성
+		lottoDao.createWinningNumbersTable();
+//		// 데이터 저장 1. 한 번에 한 개씩 여러 번 반복 저장
+//		for (WinningNumbers wn : list) {
+//			lottoDao.insertWinningNumbers(wn);
+//		}
+		//데이터 저장 2. 한 번에 여러 개의 데이터 저장
+		lottoDao.insertWinningNumbers2(list);
+		
+	}
 
 	public List<WinningNumbers> readLottoNumbersFromCsv(String csvPath) {
 		FileReader fr = null;
