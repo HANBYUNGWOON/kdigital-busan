@@ -175,7 +175,7 @@ public class LottoDao {
 			
 			conn = DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/demoweb",	// 사용할 데이터베이스 연결 정보 
-					"kdigital", "mysql");				// 데이터베이스 사용자 계정
+					"kdigital", "mysql");					// 데이터베이스 사용자 계정
 			
 			String sql = "SELECT COUNT(*) " +
 						 "FROM WINNING_NUMBERS " +

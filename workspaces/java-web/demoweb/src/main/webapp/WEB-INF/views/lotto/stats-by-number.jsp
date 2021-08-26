@@ -47,8 +47,9 @@
 					<th style="background-color:#f5f5f5;width:20%">보너스번호</th>
 					<td style="text-align:left">
 						<select name="includeBno">
-							<option value="1" selected="selected">포함</option>
-							<option value="0">미포함</option>
+							<% boolean includeBno = (boolean)request.getAttribute("includeBno"); %>
+							<option value="1" <%= includeBno ? "selected" : "" %>>포함</option>
+							<option value="0" <%= includeBno ? "" : "selected" %>>미포함</option>
 						</select>			
 					</td>
 				</tr>
@@ -57,20 +58,20 @@
 					<td style="text-align:left">
 						<select name="rndFrom">
 							<% for (int i = 1; i <= 977; i++) { %>
-							<option value="<%= i %>" <%= i == 1 ? "selected" : "" %>><%= i %></option>
+							<option value="<%= i %>" <%= i == (int)request.getAttribute("rndFrom") ? "selected" : "" %>><%= i %></option>
 							<% } %>
 						</select>
 						&nbsp; ~ &nbsp;
 						<select name="rndTo">
 							<% for (int i = 1; i <= 977; i++) { %>
-							<option value="<%= i %>" <%= i == 977 ? "selected" : "" %>><%= i %></option>
+							<option value="<%= i %>" <%= i == (int)request.getAttribute("rndTo") ? "selected" : "" %>><%= i %></option>
 							<% } %>
 						</select>
 					</td>
 				</tr>
 				<tr>					
 					<td colspan="2" style="text-align: center;height:50px">
-						<input type="submit" value="조회">
+						<input type="submit" value="조회"><!-- type=submit : 포함된 form을 서버로 submit -->
 					</td>
 				</tr>
 			</table>
