@@ -20,7 +20,7 @@ public class ExamplesWebFilter implements Filter {
 		String url = req.getRequestURI();
 		System.out.println(url);
 		
-		if (url.contains("a")) {
+		if (url.contains("a.lotto.jsp")) {
 			HttpServletResponse resp = (HttpServletResponse)arg1;
 			resp.sendRedirect("index.html");
 			return;
