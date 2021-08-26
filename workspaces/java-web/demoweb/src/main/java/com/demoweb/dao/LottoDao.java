@@ -163,7 +163,7 @@ public class LottoDao {
 	}
 	
 	// 번호별로 1등 당첨에 포함된 횟수 조회
-	public int[] selectStatsByNumber() {
+	public int[] selectStatsByNumber(boolean includeBno, int rndFrom, int rndTo) {
 
 		Connection conn = null;				// 연결 객체의 참조를 저장할 변수
 		PreparedStatement pstmt = null;		// 명령 객체의 참조를 저장할 변수
@@ -177,7 +177,8 @@ public class LottoDao {
 					"jdbc:mysql://localhost:3306/demoweb",	// 사용할 데이터베이스 연결 정보 
 					"kdigital", "mysql");				// 데이터베이스 사용자 계정
 			
-			String sql = "SELECT COUNT(*) FROM WINNING_NUMBERS " +
+			String sql = "SELECT COUNT(*) " +
+						 "FROM WINNING_NUMBERS " +
 						 "WHERE NO1=? OR NO2=? OR NO3=? OR NO4=? OR NO5=? OR NO6=? OR BNO=?";
 			
 			pstmt = conn.prepareStatement(sql);

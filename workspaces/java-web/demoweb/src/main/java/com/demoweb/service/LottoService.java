@@ -63,9 +63,9 @@ public class LottoService {
 		return result;
 	}
 
-	public int[] loadStatsByNumber() {
+	public int[] loadStatsByNumber(boolean includeBno, int rndFrom, int rndTo) {
 		LottoDao lottoDao = new LottoDao();
-		int[] countByNumber = lottoDao.selectStatsByNumber();
+		int[] countByNumber = lottoDao.selectStatsByNumber(includeBno, rndFrom, rndTo);
 		return countByNumber;
 	}
 }

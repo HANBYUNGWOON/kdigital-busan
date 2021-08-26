@@ -41,23 +41,42 @@
 		<jsp:include page="/WEB-INF/views/modules/header.jsp" />
 		
 		<div style="padding-top:25px;text-align:center">
-			
+			<form action="stats-by-number.action" method="post">
 			<table border="1" style="width:800px;margin:0 auto">
 				<tr style="height:30px">
-					<td style="width:20%"></td>
-					<td style="text-align:left">						
+					<th style="background-color:#f5f5f5;width:20%">보너스번호</th>
+					<td style="text-align:left">
+						<select name="includeBno">
+							<option value="1" selected="selected">포함</option>
+							<option value="0">미포함</option>
+						</select>			
 					</td>
 				</tr>
 				<tr style="height:30px">
-					<td></td>
+					<th style="background-color:#f5f5f5">회차선택</th>
 					<td style="text-align:left">
+						<select name="rndFrom">
+							<% for (int i = 1; i <= 977; i++) { %>
+							<option value="<%= i %>" <%= i == 1 ? "selected" : "" %>><%= i %></option>
+							<% } %>
+						</select>
+						&nbsp; ~ &nbsp;
+						<select name="rndTo">
+							<% for (int i = 1; i <= 977; i++) { %>
+							<option value="<%= i %>" <%= i == 977 ? "selected" : "" %>><%= i %></option>
+							<% } %>
+						</select>
+					</td>
+				</tr>
+				<tr>					
+					<td colspan="2" style="text-align: center;height:50px">
+						<input type="submit" value="조회">
 					</td>
 				</tr>
 			</table>
+			</form>
 			<br><br>
 			
-			[ <a href="write.action">작업 링크</a> ]
-			<br><br>
 			
 			<%
 			//서블릿에서 저장한 데이터 읽고 변수에 저장
