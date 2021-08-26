@@ -30,6 +30,11 @@ public class LottoStatsByNumberServlet extends HttpServlet {
 		if (req.getParameter("rndTo") != null) {
 			rndTo = Integer.parseInt(req.getParameter("rndTo"));
 		}
+		//System.out.printf("%d, %d", rndFrom, rndTo);
+		if (rndTo < rndFrom) {
+			resp.sendRedirect("stats-by-numbers.action");
+			return;
+		}
 		
 		// 1. 데이터베이스에서 데이터 조회
 		LottoService lottoService = new LottoService();

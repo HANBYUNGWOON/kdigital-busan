@@ -179,15 +179,25 @@ public class LottoDao {
 			
 			String sql = "SELECT COUNT(*) " +
 						 "FROM WINNING_NUMBERS " +
-						 "WHERE NO1=? OR NO2=? OR NO3=? OR NO4=? OR NO5=? OR NO6=? OR BNO=?";
+						 "WHERE (RND >= ? AND RND <= ?) AND (NO1=? OR NO2=? OR NO3=? OR NO4=? OR NO5=? OR NO6=? ";
+			if (includeBno) {
+				sql += "OR BNO=? ";
+			}
+			sql += ") ";
 			
 			pstmt = conn.prepareStatement(sql);
 			
 			for (int no = 1; no <= 45; no++) { // 숫자 1 ~ 45까지 당첨 횟수를 뽑기 위한 반복문
 				pstmt.clearParameters();// 앞에서 지정한 파라미터 값 제거
 
-				for (int i = 1; i <= 7; i++) { // SQL의 ?를 채우기 위한 반복문
+				pstmt.setInt(1, rndFrom);
+				pstmt.setInt(2, rndTo);
+				
+				for (int i = 3; i <= 8; i++) { // SQL의 ?를 채우기 위한 반복문
 					pstmt.setInt(i, no);
+				}
+				if (includeBno) {
+					pstmt.setInt(9, no);					
 				}
 				
 				rs = pstmt.executeQuery();
