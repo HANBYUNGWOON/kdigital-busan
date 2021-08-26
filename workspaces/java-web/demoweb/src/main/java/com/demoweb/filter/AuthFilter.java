@@ -27,6 +27,7 @@ public class AuthFilter implements Filter {
 		
 		String uri = req.getRequestURI(); // 현재 요청의 전체 경로 문자열
 		
+		//로그인 한 사용자인 경우 세션 객체에 loginuser 라는 이름으로 데이터가 저장되어 있으므로 데이터 읽어 오기
 		MemberVO member = (MemberVO)session.getAttribute("loginuser");
 		
 		boolean invalid = false;
