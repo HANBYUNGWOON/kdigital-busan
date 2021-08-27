@@ -50,3 +50,11 @@
                 </ul>
             </div>
 		</div>
+		
+		<div id="counter" style="text-align:right;padding: 5px;margin-top:1px;border:solid 1px black">
+			[TOTAL : ${ applicationScope.total }][CURRENT : ${ applicationScope.current }]
+		</div>
+		
+		
+		
+		

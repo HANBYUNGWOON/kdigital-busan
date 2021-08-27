@@ -17,8 +17,8 @@ public class LogoutServlet extends HttpServlet {
 		
 		HttpSession session = req.getSession();
 		// 로그아웃 처리 -> 세션에서 데이터 제거
-		// session.removeAttribute("loginuser"); // 세션에서 loginuser 데이터만 제거 
-		session.invalidate(); // 세션 초기화 (모든 데이터 제거)
+		session.removeAttribute("loginuser"); // 세션에서 loginuser 데이터만 제거 
+		// session.invalidate(); // 세션 초기화 (모든 데이터 제거)
 		
 		// 메인화면으로 이동
 		resp.sendRedirect("/demoweb/home.action");
