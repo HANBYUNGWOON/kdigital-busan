@@ -2,7 +2,9 @@
 		 contentType="text/html; charset=utf-8"
 		 pageEncoding="utf-8"%>
 		 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 
@@ -79,37 +81,33 @@
 			</form>
 			<br><br>
 			
+			<c:set var="max" value="0" />
+			<c:forEach var="count" items="${ countByNumber }">
+				<c:if test="${ max < count }">
+					<c:set var="max" value="${ count }" />
+				</c:if>
+			</c:forEach>
+			<c:set var="colors" value='${["#fbc400", "#69c8f2", "#ff7272", "#aaa", "#b0d840"]}' />
 			
-			<%
-			//서블릿에서 저장한 데이터 읽고 변수에 저장
-			int[] countByNumber = (int[])request.getAttribute("countByNumber");
-			
-			double max = 0;
-			for (int i = 0; i < countByNumber.length; i++) {
-				if (max < countByNumber[i]) {
-					max = countByNumber[i];
-				}
-			}
-			
-			String[] colors = { "#fbc400", "#69c8f2", "#ff7272", "#aaa", "#b0d840" };
-			%>			
 			<table border="1" style="width:800px;margin:0 auto">
 				<tr style="background-color:#f5f5f5;height:40px">
 					<th style="width:80px">번호</th>
 					<th>그래프</th>
 					<th style="width:80px">당첨횟수</th>
 				</tr>
-				<% for (int i = 0; i < countByNumber.length; i++) { %>
+				<c:forEach var="count" items="${ countByNumber }" varStatus="status">
 				<tr style="height:40px">
 					<td style="text-align:center">
-						<span class="ball_645 sml ball<%= (i / 10) + 1 %>"><%= i + 1 %></span>
+						<fmt:parseNumber var="ball_no" integerOnly="true" value="${ (status.index / 10) + 1 }" />
+						<span class="ball_645 sml ball${ ball_no }">${ status.index + 1 }</span>
 					</td>
 					<td>
-						<div style="background-color:<%= colors[(i / 10)] %>;width:<%= (countByNumber[i] / max) * 100 %>%;">&nbsp;</div>
+						<fmt:parseNumber var="color" integerOnly="true" value="${ (status.index / 10) }" />
+						<div style="background-color:${ colors[color] };width:${ (count / max) * 100 }%;">&nbsp;</div>
 					</td>
-					<td style="text-align:center"><%= countByNumber[i] %></td>
+					<td style="text-align:center">${ count }</td>
 				</tr>
-				<% } %>
+				</c:forEach>
 								
 			</table>
 			<br /><br /><br /><br />
