@@ -10,6 +10,7 @@ public class DemoWebListener implements ServletContextListener, HttpSessionListe
 
     public void contextInitialized(ServletContextEvent sce)  {
     	ServletContext application = sce.getServletContext(); // JSP의 application 내장 객체와 같은 객체
+    	// 파일에서 total 정보를 읽기
     	application.setAttribute("total", 0);
     	application.setAttribute("current", 0);    	
     }
@@ -26,6 +27,7 @@ public class DemoWebListener implements ServletContextListener, HttpSessionListe
     	application.setAttribute("current", current);
     }
     public void contextDestroyed(ServletContextEvent sce)  {
+    	// 파일에 total 정보 저장
     }
 
 	
