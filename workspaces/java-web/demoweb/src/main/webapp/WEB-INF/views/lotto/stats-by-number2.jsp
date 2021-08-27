@@ -1,8 +1,6 @@
 <%@ page language="java" 
 		 contentType="text/html; charset=utf-8"
-		 pageEncoding="utf-8"%>
-		 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+		 pageEncoding="utf-8"%>    
 
 <!DOCTYPE html>
 
@@ -49,8 +47,9 @@
 					<th style="background-color:#f5f5f5;width:20%">보너스번호</th>
 					<td style="text-align:left">
 						<select name="includeBno">
-							<option value="1" ${ requestScope.includeBno ? "selected" : "" }>포함</option>
-							<option value="0" ${ includeBno ? "" : "selected" }>미포함</option>
+							<% boolean includeBno = (boolean)request.getAttribute("includeBno"); %>
+							<option value="1" <%= includeBno ? "selected" : "" %>>포함</option>
+							<option value="0" <%= includeBno ? "" : "selected" %>>미포함</option>
 						</select>			
 					</td>
 				</tr>
@@ -58,15 +57,15 @@
 					<th style="background-color:#f5f5f5">회차선택</th>
 					<td style="text-align:left">
 						<select name="rndFrom">
-							<c:forEach var="i" begin="1" end="977">
-							<option value="${ i }" ${ i eq requestScope.rndFrom ? "selected" : "" }>${ i }</option>
-							</c:forEach>
+							<% for (int i = 1; i <= 977; i++) { %>
+							<option value="<%= i %>" <%= i == (int)request.getAttribute("rndFrom") ? "selected" : "" %>><%= i %></option>
+							<% } %>
 						</select>
 						&nbsp; ~ &nbsp;
 						<select name="rndTo">
-							<c:forEach var="i" begin="1" end="977">
-							<option value="${ i }" ${ i == rndTo ? "selected" : "" }>${ i }</option>
-							</c:forEach>
+							<% for (int i = 1; i <= 977; i++) { %>
+							<option value="<%= i %>" <%= i == (int)request.getAttribute("rndTo") ? "selected" : "" %>><%= i %></option>
+							<% } %>
 						</select>
 					</td>
 				</tr>

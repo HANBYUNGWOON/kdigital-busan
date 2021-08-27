@@ -2,41 +2,26 @@
 <%@ page language="java" 
 		 contentType="text/html; charset=utf-8"
     	 pageEncoding="utf-8"%>
-    	 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-		<%-- 
-		<c:if test="${ empty param.bgcolor }">
-		<div id='header'>
-		</c:if>
-		<c:if test="${ not empty param.bgcolor }">
-		<div id='header' style='background-color:${ param.bgcolor }'>
-		</c:if> 
-		--%>
+		<% String bgColor = request.getParameter("bgcolor"); %>
 		
-		<c:choose>
-		<c:when test="${ empty param.bgcolor }">
+		<% if (bgColor == null) { %>
 		<div id='header'>
-		</c:when>
-		<c:otherwise>
-		<div id='header' style='background-color:${ param.bgcolor }'>
-		</c:otherwise>
-		</c:choose>
-		
+		<% } else { %>
+		<div id='header' style='background-color:<%= bgColor %>'>
+		<% } %>
             <div class="title">
                 <a href="/demoweb/home.action">DEMO WEBSITE</a>
             </div>
             <div class="links">
-            <c:choose>
-            <c:when test="${ empty loginuser }">
+            <% MemberVO member = (MemberVO)session.getAttribute("loginuser"); %>
+            <% if (member == null) { // 로그인하지 않은 경우 %>
             	<a href="/demoweb/account/login.action">로그인</a>
                 <a href="/demoweb/account/register.action">회원가입</a>
-            </c:when>
-            <c:otherwise>
-                ${ loginuser.memberId }님 환영합니다.
+            <% } else { //로그인한 경우 %>
+                <%= member.getMemberId() %>님 환영합니다.
                 <a href="/demoweb/account/logout.action">로그아웃</a>
-            </c:otherwise>
-            </c:choose>
+            <% } %>
             </div>
         </div>
                 
