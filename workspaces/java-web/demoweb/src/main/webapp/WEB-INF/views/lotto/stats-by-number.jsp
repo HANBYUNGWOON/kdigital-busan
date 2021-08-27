@@ -87,7 +87,8 @@
 					<c:set var="max" value="${ count }" />
 				</c:if>
 			</c:forEach>
-			<c:set var="colors" value='${["#fbc400", "#69c8f2", "#ff7272", "#aaa", "#b0d840"]}' />
+			<%-- <c:set var="colors" value='${["#fbc400", "#69c8f2", "#ff7272", "#aaa", "#b0d840"]}' /> --%>
+			<c:set var="colors" value='${ fn:split("#fbc400,#69c8f2,#ff7272,#aaa,#b0d840", ",") }' />
 			
 			<table border="1" style="width:800px;margin:0 auto">
 				<tr style="background-color:#f5f5f5;height:40px">
