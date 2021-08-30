@@ -1,8 +1,18 @@
 package com.springexample.ioc;
 
-import org.springframework.context.support.GenericXmlApplicationContext;
-
 public class MyServiceConsumer implements ServiceConsumer {
+	
+	private MessageService messageService; // 초기값은 null
+	public void setMessageService(MessageService messageService) { // dependency injection의 통로 ( setter injection )
+		this.messageService = messageService;
+	}
+	
+	private TimeService timeService;
+	
+	public MyServiceConsumer() {}
+	public MyServiceConsumer(TimeService timeService) {	// dependency injection의 통로 ( constructor injection )
+		this.timeService = timeService;
+	}
 	
 	public void doSomething() {
 		
@@ -14,12 +24,26 @@ public class MyServiceConsumer implements ServiceConsumer {
 //		System.out.println(message);
 
 		// 스프링 IoC 컨테이를 통해 객체와 메서드 사용
-		GenericXmlApplicationContext appContext = new GenericXmlApplicationContext("app-context.xml"); // IoC 컨테이너 만들기
-		MessageService messageService = appContext.getBean("messageService", MessageService.class); // id가 messageService인 클래스의 인스턴를 요청
+//		GenericXmlApplicationContext appContext = new GenericXmlApplicationContext("app-context.xml"); // IoC 컨테이너 만들기
+//		MessageService messageService = appContext.getBean("messageService", MessageService.class); // id가 messageService인 클래스의 인스턴를 요청
+//		String message = messageService.getMessage();
+//		System.out.println(message);
+		
+		// 주입된 객체 사용 ( 객체를 직접 만들거나 가져올 필요 없음 )
 		String message = messageService.getMessage();
 		System.out.println(message);
 		
+		//////////////////////////////
+		
+		// 1. MyTimeService timeService = new MyTimeService();
+		// 2. MyTimeService timeService = appContext.getBean("timeService", TimeService.class);
+		
+		String timeString = timeService.getTimeString();
+		System.out.println(timeString);
 	}
+
+
+
 
 }
 
