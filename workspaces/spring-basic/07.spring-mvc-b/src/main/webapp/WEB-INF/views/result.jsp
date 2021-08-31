@@ -11,6 +11,10 @@
 <body>
 
 <h1>This is result page</h1>
+<h2>0.
+	[${ msg }][${ cnt }][${ requestScope.test }]
+
+</h2>
 <h2>1.
 	[${ myperson.name }]
 	[${ myperson.phone }]
