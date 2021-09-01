@@ -6,8 +6,8 @@
 <head>
 	<meta charset="utf-8" />
 	<title>사용자등록</title>
-	<link rel="Stylesheet" href="/demoweb/styles/default.css" />
-	<link rel="Stylesheet" href="/demoweb/styles/input.css" />
+	<link rel="Stylesheet" href="/spring-demoweb/resources/styles/default.css" />
+	<link rel="Stylesheet" href="/spring-demoweb/resources/styles/input.css" />
 
 </head>
 <body>
@@ -65,7 +65,7 @@
 	$(function() {
 		
 		$('#cancel').on('click', function(event) {
-			location.href = "/demoweb/home.action";
+			location.href = "/spring-demoweb/home.action";
 		});
 		
 		$('#register').on('click', function(event) {

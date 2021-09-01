@@ -8,14 +8,11 @@
 <head>
 	<meta charset='utf-8' />
 	<title>Home</title>
-	<link rel='Stylesheet' href='/demoweb/styles/default.css' />
+	<link rel='Stylesheet' href='/spring-demoweb/resources/styles/default.css' />
 </head>
 <body>
 
 	<div id='pageContainer'>
-		
-		<%-- <%@ include file="/WEB-INF/views/modules/header.jsp" %> --%>
-		<%-- <% pageContext.include("/WEB-INF/views/modules/header.jsp"); %> --%>
 		<jsp:include page="/WEB-INF/views/modules/header.jsp">
 			<jsp:param name="bgcolor" value="palegreen" />
 			<jsp:param name="a" value="v" />

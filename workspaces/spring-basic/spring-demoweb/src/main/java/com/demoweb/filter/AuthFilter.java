@@ -40,7 +40,7 @@ public class AuthFilter implements Filter {
 			}
 		}
 		if (invalid) {
-			resp.sendRedirect("/demoweb/account/login.action");
+			resp.sendRedirect("/spring-demoweb/account/login.action");
 			return;
 		}
 		arg2.doFilter(arg0, arg1);

@@ -12,7 +12,7 @@
 <head>
 	<meta charset="utf-8" />
 	<title></title>
-	<link rel="Stylesheet" href="/demoweb/styles/default.css" />
+	<link rel="Stylesheet" href="/spring-demoweb/resources/styles/default.css" />
 	<style>
 	a { text-decoration: none }
 	/* 645 ball */
