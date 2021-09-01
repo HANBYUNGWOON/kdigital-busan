@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 public class DemoController {
@@ -105,6 +107,11 @@ public class DemoController {
 		// return "home";   		//  /WEB-INF/views/ + home + .jsp
 		// return "home.action";	//	/WEB-INF/views/ + home.action + .jsp
 		return "redirect:/home.action";
+	}
+	
+	@GetMapping(path = { "/demo/forward.action" })
+	public String forward() {
+		return "forward:/resources/forward.html";
 	}
 	
 	
