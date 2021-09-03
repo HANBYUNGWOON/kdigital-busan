@@ -312,6 +312,7 @@ public class LottoDaoImpl implements LottoDao {
 					String sql = "SELECT COUNT(*) " +
 							 	 "FROM WINNING_NUMBERS " +
 							 	 String.format("WHERE (RND > (SELECT COUNT(RND) - ? FROM WINNING_NUMBERS)) AND (%s BETWEEN ? AND ?)", columns[i]);
+					System.out.println(sql);
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setInt(1, weeks);
 					pstmt.setInt(2, no * range + 1);
@@ -323,6 +324,7 @@ public class LottoDaoImpl implements LottoDao {
 					rs.close();
 					pstmt.close();
 				}
+				System.out.println("-----------------");
 				countBySection[no] = count;
 				
 			}
