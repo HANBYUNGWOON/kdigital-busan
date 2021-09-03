@@ -51,8 +51,8 @@
 					<th style="background-color:#f5f5f5;width:20%">보너스번호</th>
 					<td style="text-align:left">
 						<select name="includeBno">
-							<option value="1" ${ requestScope.includeBno ? "selected" : "" }>포함</option>
-							<option value="0" ${ includeBno ? "" : "selected" }>미포함</option>
+							<option value="true" ${ requestScope.includeBno ? "selected" : "" }>포함</option>
+							<option value="false" ${ includeBno ? "" : "selected" }>미포함</option>
 						</select>			
 					</td>
 				</tr>
