@@ -28,6 +28,7 @@ public class LottoInitDataServlet extends HttpServlet {
 		
 		// 4. home으로 redirect (응답컨텐츠 생산)
 		resp.sendRedirect("/demoweb/home.action");
+		
 	}
 
 }
