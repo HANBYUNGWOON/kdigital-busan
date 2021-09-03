@@ -77,4 +77,11 @@ public class LottoServiceImpl implements LottoService {
 		int[] countByNumber = lottoDao.selectStatsByNumber(includeBno, rndFrom, rndTo);
 		return countByNumber;
 	}
+
+	@Override
+	public int[] loadStatsBySection(int weeks, int range) {
+		int[] countBySection = lottoDao.selectStatsBySection(weeks, range);
+		return countBySection;
+	}
+
 }

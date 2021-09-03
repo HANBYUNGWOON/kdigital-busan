@@ -61,6 +61,20 @@ public class LottoController {
 		
 		return "lotto/stats-by-number"; //	/WEB-INF/views/ + lotto/stats-by-number + .jsp
 	}
+	
+	@RequestMapping(path = { "/stats-by-section.action" })
+	public String statsBySection(@RequestParam(defaultValue = "10") int range, 
+								 @RequestParam(defaultValue = "5") int weeks,
+								Model model) {
+		
+		int[] countBySection = lottoService.loadStatsBySection(weeks, range);
+		model.addAttribute("countBySection", countBySection);
+		model.addAttribute("range", range);
+		model.addAttribute("weeks", weeks);
+		
+		return "lotto/stats-by-section";
+		
+	}
 }
 
 

@@ -17,5 +17,8 @@ public interface LottoDao {
 
 	// 번호별로 1등 당첨에 포함된 횟수 조회
 	int[] selectStatsByNumber(boolean includeBno, int rndFrom, int rndTo);
+	
+	// 번호 범위별로 1등 당첨에 포함된 횟수 조회
+	int[] selectStatsBySection(int weeks, int range);
 
 }

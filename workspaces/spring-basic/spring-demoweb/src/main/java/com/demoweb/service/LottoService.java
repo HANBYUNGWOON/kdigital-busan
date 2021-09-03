@@ -11,5 +11,7 @@ public interface LottoService {
 	List<WinningNumbers> readLottoNumbersFromCsv(String csvPath);
 
 	int[] loadStatsByNumber(boolean includeBno, int rndFrom, int rndTo);
+	
+	int[] loadStatsBySection(int weeks, int range);
 
 }

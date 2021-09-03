@@ -1,6 +1,10 @@
 <%@ page language="java" 
 		 contentType="text/html; charset=utf-8"
-		 pageEncoding="utf-8"%>    
+		 pageEncoding="utf-8"%> 
+		 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
 
 <!DOCTYPE html>
 
@@ -41,38 +45,62 @@
 		<jsp:include page="/WEB-INF/views/modules/header.jsp" />
 		
 		<div style="padding-top:25px;text-align:center">
-			
-			<table border="1" style="width:600px;margin:0 auto">
+			<form action="stats-by-section.action" method="post">
+			<table border="1" style="width:800px;margin:0 auto">
 				<tr style="height:30px">
-					<td style="width:20%"></td>
-					<td style="text-align:left">						
+					<th style="width:20%">범위</th>
+					<td style="text-align:left">
+						<select name="range">
+							<option value="5" ${ range eq 5 ? "selected" : "" }>5번대</option>
+							<option value="10" ${ range eq 10 ? "selected" : "" }>10번대</option>
+						</select>						
 					</td>
 				</tr>
 				<tr style="height:30px">
-					<td></td>
+					<th>기간</th>
 					<td style="text-align:left">
+						<select name="weeks">
+							<option value="5" ${ weeks eq 5 ? "selected" : "" }>최근 5주</option>
+							<option value="10" ${ weeks eq 10 ? "selected" : "" }>최근 10주</option>
+							<option value="15" ${ weeks eq 15 ? "selected" : "" }>최근 15주</option>
+						</select>
+					</td>
+				</tr>
+				<tr>					
+					<td colspan="2" style="text-align: center;height:50px">
+						<input type="submit" value="조회"><!-- type=submit : 포함된 form을 서버로 submit -->
 					</td>
 				</tr>
 			</table>
+			</form>
 			<br><br>
 			
-			[ <a href="write.action">작업 링크</a> ]
-			<br><br>
+			<c:set var="max" value="0" />
+			<c:forEach var="count" items="${ countBySection }">
+				<c:if test="${ max < count }">
+					<c:set var="max" value="${ count }" />
+				</c:if>
+			</c:forEach>
+			<c:set var="colors" value='${ fn:split("#fbc400,#69c8f2,#ff7272,#aaa,#b0d840", ",") }' />
 			
-			<table border="1" style="width:600px;margin:0 auto">
-				<tr style="background-color:#f5f5f5;height:30px">
-					<th style="width:50px">제목1</th>
-					<th style="width:300px">제목2</th>
-					<th style="width:125px">제목3</th>
-					<th style="width:125px;text-align:center">제목4</th>
+			<table border="1" style="width:800px;margin:0 auto">
+				<tr style="background-color:#f5f5f5;height:40px">
+					<th style="width:80px">번호대</th>
+					<th>그래프</th>
+					<th style="width:80px">당첨횟수</th>
 				</tr>
-				
-				<tr style="height:30px">
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+				<c:forEach var="count" items="${ countBySection }" varStatus="status">
+				<tr style="height:40px">
+					<td style="text-align:center">
+						${ status.index * range + 1 } ~ ${ (status.index + 1) * range } 번대
+					</td>
+					<td>
+						<fmt:parseNumber var="color" integerOnly="true" value="${ (status.index / (10 / range)) }" />
+						<div style="background-color:${ colors[color] };width:${ (count / max) * 100 }%;">&nbsp;</div>
+					</td>
+					<td style="text-align:center">${ count }</td>
 				</tr>
+				</c:forEach>
 								
 			</table>
 			<br /><br /><br /><br />
