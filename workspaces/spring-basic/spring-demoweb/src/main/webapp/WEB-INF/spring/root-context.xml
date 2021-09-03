@@ -9,7 +9,14 @@
 		<property name="memberDao" ref="memberDao" />
 	</bean>
 	
+	<bean id="lottoService" class="com.demoweb.service.LottoServiceImpl">
+		<property name="lottoDao" ref="lottoDao" />
+	</bean>
+	
 	<bean id="memberDao" class="com.demoweb.dao.MemberDaoImpl">
+	</bean>
+	
+	<bean id="lottoDao" class="com.demoweb.dao.LottoDaoImpl">
 	</bean>
 		
 </beans>

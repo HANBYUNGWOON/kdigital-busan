@@ -12,12 +12,17 @@ import com.opencsv.CSVReader;
 
 public class LottoServiceImpl implements LottoService {
 	
+	private LottoDao lottoDao;
+	public void setLottoDao(LottoDao lottoDao) { // IoC 컨테이너에서 의존 객체를 주입하는 통로 ( setter injection ) 
+		this.lottoDao = lottoDao;
+	}
+	
 	@Override
 	public void initData(String csvPath) {
 		// csv 파일을 읽어서 WinningNumbers 리스트 만들기
 		List<WinningNumbers> list = readLottoNumbersFromCsv(csvPath);
 		
-		LottoDao lottoDao = new LottoDaoImpl();
+		//LottoDao lottoDao = new LottoDaoImpl();
 		// 테이블 제거
 		lottoDao.dropWinningNumbersTable();
 		// 테이블 생성
@@ -68,7 +73,7 @@ public class LottoServiceImpl implements LottoService {
 
 	@Override
 	public int[] loadStatsByNumber(boolean includeBno, int rndFrom, int rndTo) {
-		LottoDao lottoDao = new LottoDaoImpl();
+		//LottoDao lottoDao = new LottoDaoImpl();
 		int[] countByNumber = lottoDao.selectStatsByNumber(includeBno, rndFrom, rndTo);
 		return countByNumber;
 	}
