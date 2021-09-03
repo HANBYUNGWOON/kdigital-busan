@@ -9,7 +9,7 @@ import javax.sql.DataSource;
 
 import com.demoweb.vo.MemberVO;
 
-public class MemberDaoImpl implements MemberDao {
+public class MemberDaoImpl2 implements MemberDao {
 	
 	private DataSource dataSource;
 	public void setDataSource(DataSource dataSource) { // 의존 객체 주입 통로
@@ -24,8 +24,13 @@ public class MemberDaoImpl implements MemberDao {
 		// 0. 예외 처리 구조 만들기
 		try {
 			// 1. 드라이버 로딩 (등록)
+			//DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+			Class.forName("com.mysql.cj.jdbc.Driver");
+
 			// 2. 연결 객체 만들기
-			conn = dataSource.getConnection();
+			conn = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/demoweb",	// 사용할 데이터베이스 연결 정보 
+					"kdigital", "mysql");							// 데이터베이스 사용자 계정
 			
 			// 3. SQL 작성 + 명령 객체 만들기
 			String sql = "INSERT INTO member (memberid, passwd, email) VALUES (?, ?, ?)";
@@ -58,8 +63,12 @@ public class MemberDaoImpl implements MemberDao {
 		// 0. 예외 처리 구조 만들기
 		try {
 			// 1. 드라이버 로딩 (등록)
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
 			// 2. 연결 객체 만들기
-			conn = dataSource.getConnection();
+			conn = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/demoweb",	// 사용할 데이터베이스 연결 정보 
+					"kdigital", "mysql");							// 데이터베이스 사용자 계정
 			
 			// 3. SQL 작성 + 명령 객체 만들기
 			String sql = "SELECT memberid, email, usertype, regdate " +
