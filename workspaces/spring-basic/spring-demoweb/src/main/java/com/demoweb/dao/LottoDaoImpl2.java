@@ -6,22 +6,34 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 
-import org.springframework.jdbc.core.JdbcTemplate;
-
 import com.demoweb.vo.WinningNumbers;
 
-public class LottoDaoImpl implements LottoDao {
-	
-	private JdbcTemplate jdbcTemplate;
-	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {	// 의존 객체 주입 통로 (DI)
-		this.jdbcTemplate = jdbcTemplate;
-	}
+public class LottoDaoImpl2 implements LottoDao {
 
 	@Override
 	public void dropWinningNumbersTable() {
+
+		Connection conn = null;	
+		PreparedStatement pstmt = null;	
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			
-		String sql = "DROP TABLE WINNING_NUMBERS ";
-		jdbcTemplate.execute(sql);
+			conn = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/demoweb",
+					"kdigital", "mysql");
+			
+			String sql = "DROP TABLE WINNING_NUMBERS ";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception ex) {
+			System.out.println("테이블을 삭제할 수 없습니다.");
+		} finally {
+			try { pstmt.close(); } catch (Exception ex) {}
+			try { conn.close(); } catch (Exception ex) {}
+		}
 		
 	}
 
@@ -327,8 +339,6 @@ public class LottoDaoImpl implements LottoDao {
 		
 		return countBySection;
 	}
-
-
 }
 
 

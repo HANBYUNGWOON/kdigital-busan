@@ -19,6 +19,7 @@
 	</bean>
 	
 	<bean id="lottoDao" class="com.demoweb.dao.LottoDaoImpl">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
