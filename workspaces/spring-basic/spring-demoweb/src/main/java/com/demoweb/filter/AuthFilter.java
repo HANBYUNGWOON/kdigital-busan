@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.demoweb.vo.MemberVO;
 
-@WebFilter(urlPatterns = { "*.action" })
+//@WebFilter(urlPatterns = { "*.action" }) // AuthInterceptor로 대체
 public class AuthFilter implements Filter {
 
 	@Override
