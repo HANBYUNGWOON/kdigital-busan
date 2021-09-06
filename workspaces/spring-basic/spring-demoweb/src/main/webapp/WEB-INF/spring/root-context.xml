@@ -15,6 +15,7 @@
 	
 	<bean id="memberDao" class="com.demoweb.dao.MemberDaoImpl">
 		<property name="dataSource" ref="dataSource" />
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
 	
 	<bean id="lottoDao" class="com.demoweb.dao.LottoDaoImpl">
@@ -29,5 +30,26 @@
 		<property name="maxTotal" value="100" />
 		<property name="maxWaitMillis" value="-1" />
 	</bean>
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
 		
 </beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

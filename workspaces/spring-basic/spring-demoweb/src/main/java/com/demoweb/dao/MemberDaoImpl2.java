@@ -11,11 +11,6 @@ import com.demoweb.vo.MemberVO;
 
 public class MemberDaoImpl2 implements MemberDao {
 	
-	private DataSource dataSource;
-	public void setDataSource(DataSource dataSource) { // 의존 객체 주입 통로
-		this.dataSource = dataSource;
-	}
-	
 	@Override
 	public void insertMember(MemberVO member) {
 		Connection conn = null;			// 연결 객체의 참조를 저장할 변수

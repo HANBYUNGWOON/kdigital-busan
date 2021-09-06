@@ -7,29 +7,44 @@ import java.sql.ResultSet;
 
 import javax.sql.DataSource;
 
-import org.springframework.jdbc.core.JdbcTemplate;
-
 import com.demoweb.vo.MemberVO;
 
-public class MemberDaoImpl implements MemberDao {
+public class MemberDaoImpl3 implements MemberDao {
 	
 	private DataSource dataSource;
 	public void setDataSource(DataSource dataSource) { // 의존 객체 주입 통로
 		this.dataSource = dataSource;
 	}
 	
-	private JdbcTemplate jdbcTemplate;
-	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) { // 의존 객체 주입 통로 ( 스프링 IoC에서 DI를 통해 jdbcTemplate에 인스턴스 참조 저장 )
-		this.jdbcTemplate = jdbcTemplate;
-	}
-	
 	@Override
 	public void insertMember(MemberVO member) {
-			
-		// 3. SQL 작성 + 명령 객체 만들기
-		String sql = "INSERT INTO member (memberid, passwd, email) VALUES (?, ?, ?)";
-		jdbcTemplate.update(sql, member.getMemberId(), member.getPasswd(), member.getEmail());
+		Connection conn = null;			// 연결 객체의 참조를 저장할 변수
+		PreparedStatement pstmt = null;	// 명령 객체의 참조를 저장할 변수
 		
+		// 0. 예외 처리 구조 만들기
+		try {
+			// 1. 드라이버 로딩 (등록)
+			// 2. 연결 객체 만들기
+			conn = dataSource.getConnection();
+			
+			// 3. SQL 작성 + 명령 객체 만들기
+			String sql = "INSERT INTO member (memberid, passwd, email) VALUES (?, ?, ?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, member.getMemberId()); // SQL의 첫 번째 ?에 사용할 데이터 저장
+			pstmt.setString(2, member.getPasswd()); // SQL의 두 번째 ?에 사용할 데이터 저장
+			pstmt.setString(3, member.getEmail()); // SQL의 세 번째 ?에 사용할 데이터 저장
+			
+			// 4. 명령 실행
+			pstmt.executeUpdate(); // executeQuery : select 명령용, executeUpdate : insert, update, delete, ...
+			
+			// 5. ( 명령 실행 결과가 있다면 - SELECT인 경우 ) 결과 처리
+		} catch (Exception ex) {
+			ex.printStackTrace();// 콘솔에 오류 메시지를 출력
+		} finally {
+			// 6. 연결 닫기
+			try { pstmt.close(); } catch (Exception ex) {}
+			try { conn.close(); } catch (Exception ex) {}
+		}
 	}
 
 	@Override
@@ -75,6 +90,4 @@ public class MemberDaoImpl implements MemberDao {
 		
 		return member;
 	}
-
-
 }
