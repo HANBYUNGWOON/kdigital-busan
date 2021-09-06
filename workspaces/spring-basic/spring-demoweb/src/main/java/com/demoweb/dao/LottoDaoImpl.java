@@ -4,9 +4,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
+
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.web.servlet.mvc.condition.ParamsRequestCondition;
 
 import com.demoweb.vo.WinningNumbers;
 
@@ -158,54 +162,34 @@ public class LottoDaoImpl implements LottoDao {
 	@Override
 	public int[] selectStatsByNumber(boolean includeBno, int rndFrom, int rndTo) {
 
-		Connection conn = null;				// 연결 객체의 참조를 저장할 변수
-		PreparedStatement pstmt = null;		// 명령 객체의 참조를 저장할 변수
-		ResultSet rs = null;				// 조회 결과의 참조를 저장할 변수
 		int[] countByNumber = new int[45];	// 번호별 당첨 횟수를 저장할 배열
 		
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+		String sql = "SELECT COUNT(*) " +
+					 "FROM WINNING_NUMBERS " +
+					 "WHERE (RND >= ? AND RND <= ?) AND (NO1=? OR NO2=? OR NO3=? OR NO4=? OR NO5=? OR NO6=? ";
+		if (includeBno) {
+			sql += "OR BNO=? ";
+		}
+		sql += ") ";
+		
+		
+		for (int no = 1; no <= 45; no++) { // 숫자 1 ~ 45까지 당첨 횟수를 뽑기 위한 반복문
 			
-			conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/demoweb",	// 사용할 데이터베이스 연결 정보 
-					"kdigital", "mysql");					// 데이터베이스 사용자 계정
-			
-			String sql = "SELECT COUNT(*) " +
-						 "FROM WINNING_NUMBERS " +
-						 "WHERE (RND >= ? AND RND <= ?) AND (NO1=? OR NO2=? OR NO3=? OR NO4=? OR NO5=? OR NO6=? ";
-			if (includeBno) {
-				sql += "OR BNO=? ";
-			}
-			sql += ") ";
-			
-			pstmt = conn.prepareStatement(sql);
-			
-			for (int no = 1; no <= 45; no++) { // 숫자 1 ~ 45까지 당첨 횟수를 뽑기 위한 반복문
-				pstmt.clearParameters();// 앞에서 지정한 파라미터 값 제거
-
-				pstmt.setInt(1, rndFrom);
-				pstmt.setInt(2, rndTo);
-				
-				for (int i = 3; i <= 8; i++) { // SQL의 ?를 채우기 위한 반복문
-					pstmt.setInt(i, no);
-				}
-				if (includeBno) {
-					pstmt.setInt(9, no);					
-				}
-				
-				rs = pstmt.executeQuery();
-				rs.next();// 무조건 결과가 1개 있는 조회이기 때문에 if 또는 while 을 사용하지 않았습니다
-				int count = rs.getInt(1);
-				countByNumber[no-1] = count;
-				rs.close();
+			Object[] params = includeBno ? new Object[9] : new Object[8];
+			params[0] = rndFrom;
+			params[1] = rndTo;
+			for (int i = 2; i < params.length; i++) {
+				params[i] = no;
 			}
 			
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		} finally {
-			try { rs.close(); } catch (Exception ex) {}
-			try { pstmt.close(); } catch (Exception ex) {}
-			try { conn.close(); } catch (Exception ex) {}
+			int count = jdbcTemplate.queryForObject(sql, params, new RowMapper<Integer>() {
+				@Override
+				public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
+					return rs.getInt(1);
+				}
+			});
+			
+			countByNumber[no-1] = count;
 		}
 		
 		return countByNumber;
