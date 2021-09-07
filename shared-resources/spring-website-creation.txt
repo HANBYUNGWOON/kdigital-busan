@@ -1,0 +1,49 @@
+1. 프로젝트 만들기 (복사)
+
+2. pom.xml 파일 수정
+
+   groupid, artifactid, ...
+
+3. web.xml 파일 확인
+
+   DispatcherServlet 설정 + WebApplicationContext 설정 확인
+
+   RootWebApplication 설정 확인
+
+   인코딩 필터 등록 (한글처리)
+
+4. servlet-context.xml 파일 확인
+
+   HandlerMapping, ViewResolver, Controller 등록 설정 확인
+
+   static resources 처리 경로 설정 확인
+
+5. 웹 템플릿 다운로드
+
+6. 템플릿 파일 복사 1
+
+    img, js, css, vendor, ... 의 폴더를 프로젝트의 webapp/resources 폴더로 복사 ( why ? )
+
+7. index.html 파일의 내용을 home.jsp에 복사
+
+8. sidebar.jsp, topbar.jsp, footer.jsp, common-js.jsp, common-css.jsp 파일 만들기
+
+    home.jsp에서 필요한 부분 복사
+
+    home.jsp에서 <jsp:include 구문으로 중복 구문 대체
+
+9. home.jsp를 page-template.jsp로 복사하고 내용 수정
+
+
+
+
+
+
+
+
+
+
+
+
+
+
