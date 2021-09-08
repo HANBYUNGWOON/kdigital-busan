@@ -46,7 +46,7 @@
                              <h6 class="m-0 font-weight-bold text-primary">글 쓰기</h6>
                          </div>
                          <div class="card-body">
-                             <form>
+                             <form id="board-write-form" action="write" method="post">
                              	<div class="form-group">
                              		<label>제목</label>
                              		<input type="text" class="form-control" name="title">
@@ -59,8 +59,10 @@
                              		<label>내용</label>
                              		<textarea class="form-control" name="content" rows="5"></textarea>
                              	</div>
-                             	<button class="btn btn-primary btn-sm">쓰기</button>
-                             	<button class="btn btn-primary btn-sm">목록</button>
+                             	
+                             	<button id="write-button" class="btn btn-primary btn-sm">쓰기</button>
+                             	<button id="tolist-button" class="btn btn-primary btn-sm">목록</button>
+                             	
                              </form>	
                          </div>
                      </div>
@@ -106,13 +108,44 @@
 
     <jsp:include page="/WEB-INF/views/modules/common-js.jsp" />
 
-    <!-- Page level plugins -->
-    <script src="/spring-demoweb2/resources/vendor/chart.js/Chart.min.js"></script>
+	<script type="text/javascript">
+	$(function() { // jQuery의 main 함수 역할 ( 시작점 )
+		
+		$('#write-button').on('click', function(event) {
+			event.preventDefault();		// 이벤트를 발생시킨 객체의 기본 동작 ( 다른페이지로 이동 등 ) 의 수행을 차단
+			event.stopPropagation();	// 상위 객체로 이벤트 전달 차단
+			
+			// 입력 데이터의 유효성 검사 등 처리
+			
+			$('#board-write-form').submit(); // form을 서버로 전송
+			
+		});
+	
+		$('#tolist-button').on('click', function(event) {
+			event.preventDefault();		// 이벤트를 발생시킨 객체의 기본 동작 ( 다른페이지로 이동 등 ) 의 수행을 차단
+			event.stopPropagation();	// 상위 객체로 이벤트 전달 차단
+			
+			location.href = "list";
+			
+		});
+		
+	});
+	</script>
 
-    <!-- Page level custom scripts -->
-    <script src="/spring-demoweb2/resources/js/demo/chart-area-demo.js"></script>
-    <script src="/spring-demoweb2/resources/js/demo/chart-pie-demo.js"></script>
 
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
