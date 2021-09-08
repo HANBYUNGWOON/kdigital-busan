@@ -41,42 +41,29 @@
                         <h1 class="h3 mb-0 text-gray-800">게시판</h1>
                     </div>
 
-					<!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <span class="m-0 font-weight-bold text-primary">글 목록</span>
-                            <a href="write" class="btn btn-primary btn-sm" style="float:right">글 쓰기</a>
-                            <div style="clear:both"></div>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                
+					<div class="card shadow mb-4">
+                         <div class="card-header py-3">
+                             <h6 class="m-0 font-weight-bold text-primary">글 쓰기</h6>
+                         </div>
+                         <div class="card-body">
+                             <form>
+                             	<div class="form-group">
+                             		<label>제목</label>
+                             		<input type="text" class="form-control" name="title">
+                             	</div>
+                             	<div class="form-group">
+                             		<label>작성자</label>
+                             		<input type="text" class="form-control" name="writer">
+                             	</div>
+                             	<div class="form-group">
+                             		<label>내용</label>
+                             		<textarea class="form-control" name="content" rows="5"></textarea>
+                             	</div>
+                             	<button class="btn btn-primary btn-sm">쓰기</button>
+                             	<button class="btn btn-primary btn-sm">목록</button>
+                             </form>	
+                         </div>
+                     </div>
 
                 </div>
                 <!-- /.container-fluid -->
