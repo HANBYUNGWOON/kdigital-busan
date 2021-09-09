@@ -7,6 +7,8 @@
 		<property name="boardDao" ref="boardDao" />
 	</bean>
 	
-	<bean id="boardDao" class="com.demoweb.dao.JdbcTemplateBoardDaoImpl"></bean>
+	<bean id="boardDao" class="com.demoweb.dao.JdbcTemplateBoardDaoImpl">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
 
 </beans>
