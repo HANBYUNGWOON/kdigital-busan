@@ -1,8 +1,11 @@
 package com.demoweb.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +22,13 @@ public class BoardController {
 	private BoardService boardService;
 	
 	@GetMapping(path = { "/list" })
-	public String list() {
+	public String list(Model model) {
+		
+		// 데이터 조회
+		List<BoardVO> boards = boardService.findAll();
+		
+		// View에서 사용할 수 있도록 Model 타입의 전달인자에 저장 -> Request 객체에 저장
+		model.addAttribute("boards", boards);
 		
 		return "board/list";	// /WEB-INF/views/ + board/list + .jsp
 	}

@@ -53,23 +53,23 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>글번호</th>
+                                            <th>제목</th>
+                                            <th>작성자</th>
+                                            <th>작성일자</th>
+                                            <th>조회수</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <c:forEach var="board" items="${ boards }">
                                         <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>2011/04/25</td>
-                                            <td>$320,800</td>
+                                            <td>${ board.boardNo }</td>
+                                            <td>${ board.title }</td>
+                                            <td>${ board.writer }</td>
+                                            <td>${ board.regDate }</td>
+                                            <td>${ board.readCount }</td>
                                         </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>

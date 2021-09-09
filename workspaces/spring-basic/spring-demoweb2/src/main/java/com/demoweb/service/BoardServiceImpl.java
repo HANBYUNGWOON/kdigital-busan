@@ -1,5 +1,7 @@
 package com.demoweb.service;
 
+import java.util.List;
+
 import com.demoweb.dao.BoardDao;
 import com.demoweb.vo.BoardVO;
 
@@ -16,6 +18,13 @@ public class BoardServiceImpl implements BoardService {
 		boardDao.insertBoard(board);
 		
 		return 0;
+	}
+
+	@Override
+	public List<BoardVO> findAll() {
+
+		List<BoardVO> boards = boardDao.selectAll();
+		return boards;
 	}
 
 }
