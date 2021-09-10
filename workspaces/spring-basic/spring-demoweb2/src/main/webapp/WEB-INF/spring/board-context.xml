@@ -4,11 +4,18 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="boardService" class="com.demoweb.service.BoardServiceImpl">
-		<property name="boardDao" ref="boardDao" />
+		<!-- <property name="boardDao" ref="jdbcTemplateBoardDao" /> -->
+		<property name="boardDao" ref="sqlSessionTemplateBoardDao" />
 	</bean>
 	
-	<bean id="boardDao" class="com.demoweb.dao.JdbcTemplateBoardDaoImpl">
+	<bean id="jdbcTemplateBoardDao" 
+		  class="com.demoweb.dao.JdbcTemplateBoardDaoImpl">
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+	
+	<bean id="sqlSessionTemplateBoardDao" 
+		  class="com.demoweb.dao.MyBatisBoardDaoImpl">
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
 	</bean>
 
 </beans>

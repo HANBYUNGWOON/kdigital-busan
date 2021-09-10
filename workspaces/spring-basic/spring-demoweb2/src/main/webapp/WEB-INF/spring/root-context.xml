@@ -32,6 +32,7 @@
 	<!-- SqlSessionFactoryBean.getObject() -> SqlSessionFactory 객체를 만드는 설정 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="hikariDataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
 	</bean>
 	
 	<!-- 생성자 파라미터 sqlSessionFactory를 사용해서 SqlSession을 만들고 SqlSession을 멤버로 갖는 SqlSessionTemplate 객체 생성하는 설정 -->

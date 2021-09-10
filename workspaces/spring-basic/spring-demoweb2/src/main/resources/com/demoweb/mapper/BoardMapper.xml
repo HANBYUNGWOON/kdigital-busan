@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+		   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- package-name : com.demoweb.mapper, class-name : BoardMapper -->
+<mapper namespace="com.demoweb.mapper.BoardMapper">
+
+	<insert id="insertBoard" parameterType="com.demoweb.vo.BoardVO">
+	INSERT INTO BOARD (TITLE, WRITER, CONTENT) 
+	VALUES (#{ title }, #{ writer }, #{ content })
+	</insert>
+	
+	<select id="selectAll" resultType="com.demoweb.vo.BoardVO">
+	SELECT BOARDNO, TITLE, WRITER, READCOUNT, REGDATE 
+	FROM BOARD 
+	ORDER BY BOARDNO DESC
+	</select>
+
+</mapper>
