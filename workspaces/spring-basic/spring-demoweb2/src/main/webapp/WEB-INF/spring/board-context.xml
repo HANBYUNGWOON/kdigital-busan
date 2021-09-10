@@ -5,7 +5,7 @@
 
 	<bean id="boardService" class="com.demoweb.service.BoardServiceImpl">
 		<!-- <property name="boardDao" ref="jdbcTemplateBoardDao" /> -->
-		<property name="boardDao" ref="sqlSessionTemplateBoardDao" />
+		<property name="boardDao" ref="myBatisBoardDao" />
 	</bean>
 	
 	<bean id="jdbcTemplateBoardDao" 
@@ -13,7 +13,7 @@
 		<property name="jdbcTemplate" ref="jdbcTemplate" />
 	</bean>
 	
-	<bean id="sqlSessionTemplateBoardDao" 
+	<bean id="myBatisBoardDao" 
 		  class="com.demoweb.dao.MyBatisBoardDaoImpl">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
 	</bean>
