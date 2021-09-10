@@ -6,6 +6,7 @@
 	<bean id="boardService" class="com.demoweb.service.BoardServiceImpl">
 		<!-- <property name="boardDao" ref="jdbcTemplateBoardDao" /> -->
 		<property name="boardDao" ref="myBatisBoardDao" />
+		<property name="boardMapper" ref="boardMapper" />
 	</bean>
 	
 	<bean id="jdbcTemplateBoardDao" 
@@ -16,6 +17,12 @@
 	<bean id="myBatisBoardDao" 
 		  class="com.demoweb.dao.MyBatisBoardDaoImpl">
 		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
+	
+	<bean id="boardMapper"
+		  class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.demoweb.mapper.BoardMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />  
 	</bean>
 
 </beans>
