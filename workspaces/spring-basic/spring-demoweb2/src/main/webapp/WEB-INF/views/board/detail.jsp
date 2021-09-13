@@ -69,8 +69,8 @@
 							</div>
 
 							<div class="form-group">
-								<label>작성일자</label> 
-								<fmt:formatDate var="formattedRegDate" value="${ board.regDate }" pattern="yyyy-MM-dd hh:mm:ss"/>
+								<label>작성일자</label>
+								<fmt:formatDate var="formattedRegDate" value="${ board.regDate }" pattern="yyyy-MM-dd a hh:mm:ss"/>
 								<input class="form-control" id='regDate' value="${ formattedRegDate }">
 							</div>
 
