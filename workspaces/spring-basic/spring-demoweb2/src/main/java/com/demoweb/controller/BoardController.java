@@ -51,13 +51,15 @@ public class BoardController {
 	}
 	
 	@GetMapping(path = { "/detail" })
-	public String detail(int boardNo) {
+	public String detail(int boardNo, Model model) {
 		
 		// 1. 요청 데이터 읽기 ( 전달인자로 대체 )
 		
 		// 2. 데이터베이스에서 데이터 조회
 		BoardVO board = boardService.findBoardByBoardNo(boardNo);
-		System.out.println(board);
+		
+		// 3. View(.jsp)에서 읽을 수 있도록 데이터 저장
+		model.addAttribute("board", board); // HttpServletRequest.setAttribute("board", board)와 같은 의미
 		
 		return "board/detail";
 	}

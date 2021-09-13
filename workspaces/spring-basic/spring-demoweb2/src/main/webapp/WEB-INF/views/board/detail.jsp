@@ -1,11 +1,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page pageEncoding="utf-8" contentType="text/html; charset=utf-8" %>
 
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
-
+	<% /* javacode */ %>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -48,33 +49,34 @@
 
 							<div class="form-group">
 								<label>글번호</label> 
-								<input class="form-control" id='boardNo' name='boardNo'>
+								<input class="form-control" id='boardNo' name='boardNo' value="${ board.boardNo }">
 							</div>
 
 							<div class="form-group">
 								<label>제목</label> 
-								<input class="form-control" id='title' name='title'>
+								<input class="form-control" id='title' name='title' value="${ board.title }">
 							</div>
 
 							<div class="form-group">
 								<label>내용</label>
 								<textarea class="form-control" rows="3" 
-									id='content' name='content'></textarea>
+									id='content' name='content'>${ board.content }</textarea>
 							</div>
 
 							<div class="form-group">
 								<label>작성자</label> 
-								<input class="form-control" id='writer'	name='writer'>
+								<input class="form-control" id='writer'	name='writer' value="${ board.writer }">
 							</div>
 
 							<div class="form-group">
 								<label>작성일자</label> 
-								<input class="form-control" id='regDate'>
+								<fmt:formatDate var="formattedRegDate" value="${ board.regDate }" pattern="yyyy-MM-dd hh:mm:ss"/>
+								<input class="form-control" id='regDate' value="${ formattedRegDate }">
 							</div>
 
 							<div class="form-group">
 								<label>조회수</label> 
-								<input class="form-control" id='readCount'>
+								<input class="form-control" id='readCount' value="${ board.readCount }">
 							</div>
 
 							<button id="edit-button" type="button" class="btn btn-success">수정</button>
@@ -131,13 +133,27 @@
 
     <jsp:include page="/WEB-INF/views/modules/common-js.jsp" />
 
-    <!-- Page level plugins -->
-    <script src="/spring-demoweb2/resources/vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="/spring-demoweb2/resources/js/demo/chart-area-demo.js"></script>
-    <script src="/spring-demoweb2/resources/js/demo/chart-pie-demo.js"></script>
+    <script type="text/javascript">
+    $(function() {
+    	$(".form-group input, .form-group textarea").attr('readonly', true);
+    });
+    </script>
 
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
