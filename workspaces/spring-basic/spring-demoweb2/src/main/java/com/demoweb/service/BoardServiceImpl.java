@@ -34,4 +34,10 @@ public class BoardServiceImpl implements BoardService {
 		return boards;
 	}
 
+	@Override
+	public BoardVO findBoardByBoardNo(int boardNo) {
+		BoardVO board = boardMapper.selectBoardByBoardNo(boardNo);
+		return board;
+	}
+
 }

@@ -17,5 +17,11 @@
 	FROM BOARD 
 	ORDER BY BOARDNO DESC
 	</select>
+	
+	<select id="selectBoardByBoardNo" parameterType="int" resultType="BoardVO">
+	SELECT BOARDNO, TITLE, CONTENT, WRITER, READCOUNT, REGDATE 
+	FROM BOARD
+	WHERE BOARDNO = #{ boardNo } AND DELETED = false 
+	</select>
 
 </mapper>

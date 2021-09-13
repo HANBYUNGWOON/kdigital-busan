@@ -15,5 +15,7 @@ public interface BoardMapper {
 	void insertBoard(BoardVO board);
 	
 	List<BoardVO> selectAll();
+	
+	BoardVO selectBoardByBoardNo(int boardNo);
 
 }

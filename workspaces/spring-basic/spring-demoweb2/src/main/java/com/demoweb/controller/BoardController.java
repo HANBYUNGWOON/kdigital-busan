@@ -54,7 +54,10 @@ public class BoardController {
 	public String detail(int boardNo) {
 		
 		// 1. 요청 데이터 읽기 ( 전달인자로 대체 )
-		System.out.println(boardNo);
+		
+		// 2. 데이터베이스에서 데이터 조회
+		BoardVO board = boardService.findBoardByBoardNo(boardNo);
+		System.out.println(board);
 		
 		return "board/detail";
 	}

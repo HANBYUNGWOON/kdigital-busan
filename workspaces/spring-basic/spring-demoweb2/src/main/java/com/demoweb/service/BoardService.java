@@ -10,4 +10,6 @@ public interface BoardService {
 
 	List<BoardVO> findAll();
 
+	BoardVO findBoardByBoardNo(int boardNo);
+
 }
