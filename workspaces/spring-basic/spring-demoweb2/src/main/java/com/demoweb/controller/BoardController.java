@@ -49,5 +49,14 @@ public class BoardController {
 		// 목록으로 이동
 		return "redirect:list";
 	}
+	
+	@GetMapping(path = { "/detail" })
+	public String detail(int boardNo) {
+		
+		// 1. 요청 데이터 읽기 ( 전달인자로 대체 )
+		System.out.println(boardNo);
+		
+		return "board/detail";
+	}
 
 }

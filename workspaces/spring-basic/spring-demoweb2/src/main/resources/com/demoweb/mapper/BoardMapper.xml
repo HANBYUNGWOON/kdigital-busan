@@ -7,12 +7,12 @@
 <!-- package-name : com.demoweb.mapper, class-name : BoardMapper -->
 <mapper namespace="com.demoweb.mapper.BoardMapper">
 
-	<insert id="insertBoard" parameterType="com.demoweb.vo.BoardVO">
+	<insert id="insertBoard" parameterType="BoardVO">
 	INSERT INTO BOARD (TITLE, WRITER, CONTENT) 
 	VALUES (#{ title }, #{ writer }, #{ content })
 	</insert>
 	
-	<select id="selectAll" resultType="com.demoweb.vo.BoardVO">
+	<select id="selectAll" resultType="BoardVO">
 	SELECT BOARDNO, TITLE, WRITER, READCOUNT, REGDATE 
 	FROM BOARD 
 	ORDER BY BOARDNO DESC

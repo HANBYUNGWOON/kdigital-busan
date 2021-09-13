@@ -37,48 +37,58 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">게시판</h1>
-                    </div>
+					<h1 class="h3 mb-2 text-gray-800">게시판</h1>
+					<br>
 
-					<!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <span class="m-0 font-weight-bold text-primary">글 목록</span>
-                            <a href="write" class="btn btn-primary btn-sm" style="float:right">글 쓰기</a>
-                            <div style="clear:both"></div>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>글번호</th>
-                                            <th>제목</th>
-                                            <th>작성자</th>
-                                            <th>작성일자</th>
-                                            <th>조회수</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    <c:forEach var="board" items="${ boards }">
-                                        <tr>
-                                            <td>${ board.boardNo }</td>
-                                            <td>
-                                            	<a href="detail?boardNo=${ board.boardNo }">${ board.title }</a>
-                                            </td>
-                                            <td>${ board.writer }</td>
-                                            <td>${ board.regDate }</td>
-                                            <td>${ board.readCount }</td>
-                                        </tr>
-                                    </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+					<div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<span class="m-0 font-weight-bold text-primary">글 상세 보기</span>
+						</div>
+						<div class="card-body">
 
-                
+							<div class="form-group">
+								<label>글번호</label> 
+								<input class="form-control" id='boardNo' name='boardNo'>
+							</div>
+
+							<div class="form-group">
+								<label>제목</label> 
+								<input class="form-control" id='title' name='title'>
+							</div>
+
+							<div class="form-group">
+								<label>내용</label>
+								<textarea class="form-control" rows="3" 
+									id='content' name='content'></textarea>
+							</div>
+
+							<div class="form-group">
+								<label>작성자</label> 
+								<input class="form-control" id='writer'	name='writer'>
+							</div>
+
+							<div class="form-group">
+								<label>작성일자</label> 
+								<input class="form-control" id='regDate'>
+							</div>
+
+							<div class="form-group">
+								<label>조회수</label> 
+								<input class="form-control" id='readCount'>
+							</div>
+
+							<button id="edit-button" type="button" class="btn btn-success">수정</button>
+							<button id="delete-button" type="button" class="btn btn-success">삭제</button>
+							<button id="tolist-button" type="button" class="btn btn-success">목록</button>
+
+						</div>
+					</div>
+
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
 
                 </div>
                 <!-- /.container-fluid -->
