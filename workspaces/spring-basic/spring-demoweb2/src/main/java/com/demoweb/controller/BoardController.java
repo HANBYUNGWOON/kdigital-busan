@@ -53,8 +53,7 @@ public class BoardController {
 	@GetMapping(path = { "/detail" })
 	public String detail(int boardNo, Model model) {
 		
-		// 1. 요청 데이터 읽기 ( 전달인자로 대체 )
-		
+		// 1. 요청 데이터 읽기 ( 전달인자로 대체 )		
 		// 2. 데이터베이스에서 데이터 조회
 		BoardVO board = boardService.findBoardByBoardNo(boardNo);
 		
@@ -62,6 +61,17 @@ public class BoardController {
 		model.addAttribute("board", board); // HttpServletRequest.setAttribute("board", board)와 같은 의미
 		
 		return "board/detail";
+	}
+	
+	@GetMapping(path = { "/delete" })
+	public String delete(int boardNo) {
+		
+		// 1. 요청 데이터 읽기 ( 전달인자로 대체 )		
+		// 2. 데이터베이스에서 데이터 삭제 ( deleted 컬럼을 수정 )
+		boardService.findBoardByBoardNo(boardNo);
+		
+		// 3. 목록으로 이동
+		return "redirect:list";
 	}
 
 }
