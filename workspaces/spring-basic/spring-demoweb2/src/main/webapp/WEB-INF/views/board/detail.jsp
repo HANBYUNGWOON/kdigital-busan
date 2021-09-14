@@ -136,6 +136,19 @@
     <script type="text/javascript">
     $(function() {
     	$(".form-group input, .form-group textarea").attr('readonly', true);
+    	
+    	$('#edit-button').on('click', function(event) {
+    		
+    	});
+    	
+		$('#delete-button').on('click', function(event) {
+    		location.href = "delete?boardNo=${ board.boardNo }";
+    	});
+		
+		$('#tolist-button').on('click', function(event) {
+    		location.href = "list";
+    	});		
+		
     });
     </script>
 
