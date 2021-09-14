@@ -57,6 +57,10 @@ public class BoardController {
 		// 2. 데이터베이스에서 데이터 조회
 		BoardVO board = boardService.findBoardByBoardNo(boardNo);
 		
+		if (board == null) {
+			return "redirect:list";
+		}
+		
 		// 3. View(.jsp)에서 읽을 수 있도록 데이터 저장
 		model.addAttribute("board", board); // HttpServletRequest.setAttribute("board", board)와 같은 의미
 		
@@ -68,7 +72,7 @@ public class BoardController {
 		
 		// 1. 요청 데이터 읽기 ( 전달인자로 대체 )		
 		// 2. 데이터베이스에서 데이터 삭제 ( deleted 컬럼을 수정 )
-		boardService.findBoardByBoardNo(boardNo);
+		boardService.deleteBoard(boardNo);
 		
 		// 3. 목록으로 이동
 		return "redirect:list";

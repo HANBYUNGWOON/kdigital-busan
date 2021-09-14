@@ -65,7 +65,15 @@
                                         <tr>
                                             <td>${ board.boardNo }</td>
                                             <td>
-                                            	<a href="detail?boardNo=${ board.boardNo }">${ board.title }</a>
+                                           	<c:choose>
+                                           		<c:when test="${ not board.deleted }">
+                                           		<a href="detail?boardNo=${ board.boardNo }">${ board.title }</a>
+                                           		</c:when>
+                                           		<c:otherwise>
+                                           		<span style="color:lightgray">${ board.title } [삭제된 글]</span>
+                                           		</c:otherwise>	
+                                           	</c:choose>
+                                            	
                                             </td>
                                             <td>${ board.writer }</td>
                                             <td>${ board.regDate }</td>

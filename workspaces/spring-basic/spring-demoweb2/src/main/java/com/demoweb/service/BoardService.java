@@ -12,4 +12,6 @@ public interface BoardService {
 
 	BoardVO findBoardByBoardNo(int boardNo);
 
+	void deleteBoard(int boardNo);
+
 }

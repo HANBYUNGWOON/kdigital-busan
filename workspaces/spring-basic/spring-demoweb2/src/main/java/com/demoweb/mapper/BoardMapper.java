@@ -18,4 +18,6 @@ public interface BoardMapper {
 	
 	BoardVO selectBoardByBoardNo(int boardNo);
 
+	void updateBoardDeleted(int boardNo);
+
 }
