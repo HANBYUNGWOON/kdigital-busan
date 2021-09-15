@@ -54,12 +54,14 @@ public class BoardController {
 	public String detail(int boardNo, Model model) {
 		
 		// 1. 요청 데이터 읽기 ( 전달인자로 대체 )		
-		// 2. 데이터베이스에서 데이터 조회
-		BoardVO board = boardService.findBoardByBoardNo(boardNo);
-		
+		// 2. 데이터베이스에서 데이터 조회 ( 데이터가 없으면 목록으로 이동 )
+		BoardVO board = boardService.findBoardByBoardNo(boardNo);		
 		if (board == null) {
 			return "redirect:list";
 		}
+		
+		boardService.increaseBoardReadCount(boardNo);	// 조회 수 증가
+		board.setReadCount(board.getReadCount() + 1);
 		
 		// 3. View(.jsp)에서 읽을 수 있도록 데이터 저장
 		model.addAttribute("board", board); // HttpServletRequest.setAttribute("board", board)와 같은 의미
@@ -76,6 +78,24 @@ public class BoardController {
 		
 		// 3. 목록으로 이동
 		return "redirect:list";
+	}
+	
+	@GetMapping(path = { "/edit" })
+	public String showEditForm(int boardNo, Model model) {
+		
+		// 1. 요청 데이터 읽기 ( 전달인자로 대체 )		
+		// 2. 데이터베이스에서 데이터 조회
+		BoardVO board = boardService.findBoardByBoardNo(boardNo);
+		
+		if (board == null) {
+			return "redirect:list";
+		}
+		
+		// 3. View(.jsp)에서 읽을 수 있도록 데이터 저장
+		model.addAttribute("board", board); // HttpServletRequest.setAttribute("board", board)와 같은 의미
+		
+		// 4. View로 이동
+		return "board/edit";
 	}
 
 }

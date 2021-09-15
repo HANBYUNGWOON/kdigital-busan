@@ -39,10 +39,17 @@ public class BoardServiceImpl implements BoardService {
 		BoardVO board = boardMapper.selectBoardByBoardNo(boardNo);
 		return board;
 	}
+	
+	@Override
+	public void increaseBoardReadCount(int boardNo) {
+		boardMapper.updateBoardReadCount(boardNo);
+	}
 
 	@Override
 	public void deleteBoard(int boardNo) {
 		boardMapper.updateBoardDeleted(boardNo);
 	}
+
+	
 
 }

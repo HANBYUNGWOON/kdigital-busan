@@ -20,4 +20,6 @@ public interface BoardMapper {
 
 	void updateBoardDeleted(int boardNo);
 
+	void updateBoardReadCount(int boardNo);
+
 }

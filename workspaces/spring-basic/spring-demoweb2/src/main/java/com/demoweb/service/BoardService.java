@@ -14,4 +14,6 @@ public interface BoardService {
 
 	void deleteBoard(int boardNo);
 
+	void increaseBoardReadCount(int boardNo);
+
 }

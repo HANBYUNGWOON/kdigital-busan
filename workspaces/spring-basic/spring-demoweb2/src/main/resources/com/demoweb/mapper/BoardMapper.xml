@@ -29,5 +29,11 @@
 	SET DELETED = true
 	WHERE BOARDNO = #{ boardNo }
 	</update>
+	
+	<update id="updateBoardReadCount" parameterType="int">
+	UPDATE BOARD 
+	SET READCOUNT = READCOUNT + 1
+	WHERE BOARDNO = #{ boardNo }
+	</update>
 
 </mapper>
