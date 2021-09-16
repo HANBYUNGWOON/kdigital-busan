@@ -16,4 +16,6 @@ public interface BoardService {
 
 	void increaseBoardReadCount(int boardNo);
 
+	void updateBoard(BoardVO board);
+
 }

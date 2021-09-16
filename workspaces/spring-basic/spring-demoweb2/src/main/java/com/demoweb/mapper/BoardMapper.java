@@ -22,4 +22,6 @@ public interface BoardMapper {
 
 	void updateBoardReadCount(int boardNo);
 
+	void updateBoard(BoardVO board);
+
 }

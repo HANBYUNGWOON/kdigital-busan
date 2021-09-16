@@ -50,6 +50,11 @@ public class BoardServiceImpl implements BoardService {
 		boardMapper.updateBoardDeleted(boardNo);
 	}
 
+	@Override
+	public void updateBoard(BoardVO board) {
+		boardMapper.updateBoard(board);
+	}
+
 	
 
 }

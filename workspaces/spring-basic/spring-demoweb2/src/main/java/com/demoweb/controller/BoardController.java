@@ -97,5 +97,32 @@ public class BoardController {
 		// 4. View로 이동
 		return "board/edit";
 	}
+	
+	@PostMapping(path = { "/update" })
+	public String update(BoardVO board) {
+		
+		// 1. 요청 데이터 읽기 ( 전달인자로 대체 )
+		
+		// 2. 데이터베이스의 데이터 수정
+		boardService.updateBoard(board);
+		
+		return "redirect:detail?boardNo=" + board.getBoardNo();
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

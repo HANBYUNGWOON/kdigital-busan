@@ -116,6 +116,11 @@
 	$(function() {
 		$('#update-button').on('click', function(event) {
 			
+			// 필요한 경우 입력 데이터 유효성 검사 수행
+
+			// <form id="update-form" ...> ... </form> 요소를 서버로 전송
+			$('#update-form').submit();
+			
 		});
 		$('#cancel-button').on('click', function(event) {
 			location.href = "detail?boardNo=${ board.boardNo }";
